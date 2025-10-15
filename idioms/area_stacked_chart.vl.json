@@ -4,6 +4,7 @@
   "width": 580,
   "height": 500,
   "background": "#f2f2f2",
+
   "data": {
     "url": "https://raw.githubusercontent.com/lawchrisss/FIT3179-week10/refs/heads/main/revenue_by_category.csv",
     "format": { "type": "csv" }
@@ -33,7 +34,7 @@
   "transform": [
     { "calculate": "toNumber(datum.Year)", "as": "YearNum" },
     {
-      "fold": ["iPhone_share", "iPad_share", "Mac_share", "Wearables_share", "Services_share"],
+      "fold": ["iPhone_share","iPad_share","Mac_share","Wearables_share","Services_share"],
       "as": ["Category_raw", "Share"]
     },
     { "calculate": "replace(datum.Category_raw, '_share', '')", "as": "Category" },
@@ -54,12 +55,7 @@
         },
         {
           "name": "layerHighlight",
-          "select": {
-            "type": "point",
-            "fields": ["Category"],
-            "on": "click",
-            "clear": "dblclick"
-          }
+          "select": { "type": "point", "fields": ["Category"], "on": "click", "clear": "dblclick" }
         }
       ],
       "transform": [{ "filter": { "param": "catFilter" } }],
@@ -87,7 +83,13 @@
           "title": null,
           "scale": {
             "domain": ["iPhone","iPad","Mac","Wearables","Services"],
-            "range": ["#77A6CB", "#FAAE60", "#B9B3D2", "#82CCC0", "#F87A6D"]
+            "range": [
+              "rgba(19, 108, 200, 0.9)",  
+              "rgba(51, 7, 94, 0.9)",  
+              "rgba(142, 11, 48, 0.9)",   
+              "rgba(213, 71, 0, 0.9)",   
+              "rgba(248, 136, 18, 0.9)"  
+            ]
           },
           "legend": {
             "orient": "bottom",
