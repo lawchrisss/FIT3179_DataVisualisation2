@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>All About Apple</title>
+
+  <!-- Fonts & grid -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css">
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/grids-responsive-min.css">
+
+  <!-- Vega libs -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+  <style>
+    /* ====== Base & Typography ====== */
+    body { background-color: white; margin: 0; }
+    .page { width: 1200px; margin: auto; padding: 35px 50px 50px; }
+    h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 48px;
+      font-weight: 700;
+      margin: 10px 5px 5px 0;
+    }
+    h2 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      margin-top: 0;
+    }
+    .pure-g { margin-bottom: 25px; }
+    .description-left { padding-right: 20px; }
+
+    /* Inline text accents used in the copy */
+    #small_text { font-size: 12px; }
+    .pink_text { color: #f9c0cb; font-weight: bold; text-shadow: 1px 1px 0px black; }
+
+    /* ====== Header (title only, no audio) ====== */
+    #banner {
+      padding: 25px 20px;
+      /* Optional banner image:
+      background: url("media/webpage_banner.jpg") #20445f center/cover no-repeat;
+      */
+      background: #20445f;
+      color: white;
+    }
+
+    /* ====== Map section ====== */
+    #choro_frame {
+      background-color: #eaf6ff;
+      padding: 20px;
+    }
+    #choro_frame p { margin-right: 650px; }
+    #map { padding-right: 10px; }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- Header (title only) -->
+    <div class="pure-g" id="banner">
+      <div class="pure-u-1-1">
+        <h1>All About Apple</h1>
+      </div>
+    </div>
+
+    <!-- Map block -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div id="choro_frame">
+          <div class="description-left">
+            <h2>Global iPhone Market Share</h2>
+            <p>explanation</p>
+            <p>The map gives a good overview on which countries have the most iPhone users.</p>
+            <div id="small_text">
+              <p>* <span class="pink_text">Pink</span> countries represent countries with no data</p>
+            </div>
+          </div>
+          <div id="map"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Your JS -->
+  <script>
+    var vis1 = "idioms/map.vl.json";
+    vegaEmbed('#map', vis1, { actions: false })
+      .then(function(result){ /* result.view available if needed */ })
+      .catch(console.error);
+  </script>
+</body>
+</html>
