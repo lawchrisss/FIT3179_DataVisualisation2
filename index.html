@@ -18,19 +18,11 @@
     /* ====== Base & Typography ====== */
     body { background-color: white; margin: 0; }
     .page { width: 1200px; margin: auto; padding: 35px 50px 50px; }
-    h1 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 42px;
-      font-weight: 700;
-      margin: 10px 5px 5px 0;
-    }
-    h2 {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 700;
-      margin-top: 0;
-    }
+    h1 { font-family: 'Poppins', sans-serif; font-size: 42px; font-weight: 700; margin: 10px 5px 5px 0; }
+    h2 { font-family: 'Poppins', sans-serif; font-weight: 700; margin-top: 0; }
     .pure-g { margin-bottom: 25px; }
     .description-left { padding-right: 20px; }
+    .small-font { font-size: 14px; }
 
     /* Inline text accents */
     #small_text { font-size: 12px; }
@@ -111,6 +103,22 @@
       background-size: cover;
     }
 
+    /* ====== Revenue section (corrected shades) ====== */
+    #revenue_section { display: flex; width: 100%; margin-top: 30px; }
+    .revenue-left {
+      width: 70%;
+      padding: 20px;
+      background: #f2f2f2;   /* ✅ Lighter grey for CHART */
+      border-radius: 6px;
+    }
+    .revenue-right {
+      width: 30%;
+      padding: 20px;
+      background: #e0e0e0;   /* ✅ Darker grey for TEXT */
+      border-radius: 6px;
+      margin-left: 0;
+    }
+
     /* ====== Footer with image & overlay ====== */
     #footer_credit {
       position: relative;
@@ -131,26 +139,6 @@
       z-index: 0;
     }
     #footer_credit * { position: relative; z-index: 1; }
-
-    /* ====== New: Revenue section (70/30 split, no middle gap) ====== */
-    #revenue_section {
-      display: flex;
-      width: 100%;
-      margin-top: 30px; /* gap AFTER the map */
-    }
-    .revenue-left {
-      width: 70%;
-      padding: 20px;
-      background: #e0e0e0;   /* slightly darker grey than right */
-      border-radius: 6px;
-    }
-    .revenue-right {
-      width: 30%;
-      padding: 20px;
-      background: #f2f2f2;   /* same grey as map card */
-      border-radius: 6px;
-      margin-left: 0;        /* ensures no gap between columns */
-    }
   </style>
 </head>
 <body>
@@ -183,20 +171,17 @@
       </div>
     </div>
 
-    <!-- New: Revenue section (70/30) -->
+    <!-- Revenue section -->
     <div id="revenue_section">
       <div class="revenue-left">
         <h2>Apple Revenue by Category</h2>
-        <!-- Vega-Lite chart goes here -->
         <div id="apple_revenue_chart"></div>
       </div>
-
       <div class="revenue-right">
-        <!-- Placeholder text for your vis explanation -->
         <p class="small-font">
-          This panel summarizes key takeaways from the revenue chart:
-          shifts in category mix, standout growth periods, and any dips linked
-          to market events. Replace this text with your final insight copy.
+          This panel summarizes key takeaways from the revenue chart. Replace this placeholder with your
+          final insights on how Apple’s category mix has shifted over time, which segments led growth,
+          and any notable dips or spikes that align with market events or product cycles.
         </p>
       </div>
     </div>
@@ -210,14 +195,12 @@
   <!-- JS -->
   <script>
     // Map
-    var vis1 = "idioms/map.vl.json";
-    vegaEmbed('#map', vis1, { actions: false })
+    vegaEmbed('#map', 'idioms/map.vl.json', { actions: false })
       .then(function(result){})
       .catch(console.error);
 
-    // Apple Revenue by Category (left block)
-    var vis2 = "area_stacked_chart.vl.json";
-    vegaEmbed('#apple_revenue_chart', vis2, { actions: false })
+    // Revenue chart (✅ correct path)
+    vegaEmbed('#apple_revenue_chart', 'idioms/area_stacked_chart.vl.json', { actions: false })
       .then(function(result){})
       .catch(console.error);
   </script>
