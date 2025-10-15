@@ -40,7 +40,6 @@
       overflow: hidden;
       border-radius: 6px;
     }
-    /* Solid overlay on banner */
     #banner::after {
       content: "";
       position: absolute;
@@ -103,23 +102,23 @@
       background-size: cover;
     }
 
-    /* ====== Revenue section (corrected shades) ====== */
+    /* ====== Revenue section ====== */
     #revenue_section { display: flex; width: 100%; margin-top: 30px; }
     .revenue-left {
       width: 70%;
       padding: 20px;
-      background: #f2f2f2;   /* ✅ Lighter grey for CHART */
+      background: #f2f2f2;
       border-radius: 6px;
     }
     .revenue-right {
       width: 30%;
       padding: 20px;
-      background: #e0e0e0;   /* ✅ Darker grey for TEXT */
+      background: #e0e0e0;
       border-radius: 6px;
       margin-left: 0;
     }
 
-    /* ====== Footer with image & overlay ====== */
+    /* ====== Footer ====== */
     #footer_credit {
       position: relative;
       padding: 20px;
@@ -139,6 +138,14 @@
       z-index: 0;
     }
     #footer_credit * { position: relative; z-index: 1; }
+
+    /* ====== iPhone days block (full-width like map) ====== */
+    #iphone_days_block {
+      background: #f2f2f2;
+      padding: 20px;
+      border-radius: 6px;
+      margin-top: 40px;
+    }
   </style>
 </head>
 <body>
@@ -186,6 +193,16 @@
       </div>
     </div>
 
+    <!-- iPhone Days Emoji Chart (full-width single block) -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <div id="iphone_days_block">
+          <h2>How Many Days Of Working To Own An iPhone 17</h2>
+          <div id="iphone_days_chart"></div>
+        </div>
+      </div>
+    </div>
+
     <!-- Footer -->
     <div id="footer_credit">
       This visualisation is created by Chris Law Zi Qing
@@ -199,8 +216,13 @@
       .then(function(result){})
       .catch(console.error);
 
-    // Revenue chart (✅ correct path)
+    // Revenue chart
     vegaEmbed('#apple_revenue_chart', 'idioms/area_stacked_chart.vl.json', { actions: false })
+      .then(function(result){})
+      .catch(console.error);
+
+    // iPhone Days Emoji Chart (uses your iphone.vl.json spec)
+    vegaEmbed('#iphone_days_chart', 'idioms/iphone.vl.json', { actions: false })
       .then(function(result){})
       .catch(console.error);
   </script>
