@@ -1,0 +1,143 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "width": 1100,
+  "height": 600,
+
+  "params": [
+    {
+      "name": "attribute_selection",
+      "value": "iPhone Market Share",
+      "bind": {
+        "input": "select",
+        "options": ["iPhone Market Share", "Non-iPhone Market Share"],
+        "name": "Attribute: "
+      }
+    },
+    {
+      "name": "projection_selection",
+      "value": "equalEarth",
+      "bind": {
+        "input": "select",
+        "options": [
+          "albersUsa",
+          "azimuthalEqualArea",
+          "conicEquidistant",
+          "equalEarth",
+          "equirectangular",
+          "mercator",
+          "orthographic",
+          "stereographic"
+        ],
+        "name": "Projection: "
+      }
+    }
+  ],
+
+  "projection": { "type": { "expr": "projection_selection" } },
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/lawchrisss/week10/refs/heads/main/ne_110m_admin_0_countries%20(1).json?v=3",
+    "format": { "type": "topojson", "feature": "2ne_110m_admin_0_countries" }
+  },
+
+  "transform": [
+    {
+      "lookup": "properties.ISO_A2",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/lawchrisss/week10/refs/heads/main/iphone-market-share-clean.csv"
+        },
+        "key": "iso2",
+        "fields": ["country", "iPhoneMarketShare_2024", "AndroidMarketShare_2024"]
+      }
+    },
+    {
+      "lookup": "properties.ISO_A2",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/lawchrisss/week10/refs/heads/main/continent.csv"
+        },
+        "key": "iso2",
+        "fields": ["continent"]
+      }
+    },
+    {
+      "calculate": "attribute_selection === 'iPhone Market Share' ? toNumber(datum.iPhoneMarketShare_2024) : toNumber(datum.AndroidMarketShare_2024)",
+      "as": "share"
+    },
+    {
+      "calculate": "datum.country || datum.properties.NAME || datum.properties.NAME_LONG",
+      "as": "labelCountry"
+    },
+    {
+      "calculate": "datum.continent || 'Unknown'",
+      "as": "continent_safe"
+    }
+  ],
+
+  "layer": [
+    {
+      "transform": [
+        { "filter": "!isValid(datum.share) || isNaN(datum.share)" },
+        { "calculate": "'No Data'", "as": "shareText" }
+      ],
+      "mark": { "type": "geoshape", "stroke": "grey", "strokeWidth": 0.4 },
+      "encoding": {
+        "color": { "value": "#E5E5E5" },
+        "tooltip": [
+          { "field": "labelCountry", "title": "COUNTRY" },
+          { "field": "shareText", "title": "MARKET SHARE (%)" }
+        ]
+      }
+    },
+    {
+      "transform": [
+        { "filter": "isValid(datum.share) && !isNaN(datum.share)" }
+      ],
+      "mark": { "type": "geoshape", "stroke": "grey", "strokeWidth": 0.4 },
+      "encoding": {
+        "color": {
+          "field": "share",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 100],
+            "range": [
+              "#FFF7B2",
+              "#FDE29A",
+              "#FBC38C",
+              "#F79A84",
+              "#E97A8A",
+              "#D45C92",
+              "#B84C98",
+              "#943E9C",
+              "#6F3A9D",
+              "#4C2E7F"
+            ],
+            "interpolate": "rgb",
+            "clamp": true
+          },
+          "legend": {
+            "title": "Market Share (%)",
+            "orient": "none",
+            "direction": "horizontal",
+            "legendX": 0,
+            "legendY": 590,
+            "values": [0,10,20,30,40,50,60,70,80,90,100],
+            "gradientLength": 600,
+            "gradientThickness": 12
+          }
+        },
+        "tooltip": [
+          { "field": "labelCountry", "title": "COUNTRY" },
+          { "field": "continent_safe", "title": "CONTINENT" },
+          { "field": "share", "title": "MARKET SHARE (%)", "format": ".1f" }
+        ]
+      }
+    }
+  ],
+
+  "config": {
+    "view": { "stroke": "transparent" },
+    "background": "white"
+  }
+}
