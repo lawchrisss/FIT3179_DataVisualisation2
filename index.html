@@ -20,7 +20,7 @@
     .page { width: 1200px; margin: auto; padding: 35px 50px 50px; }
     h1 {
       font-family: 'Poppins', sans-serif;
-      font-size: 42px; /* slight reduction for better proportion */
+      font-size: 42px;
       font-weight: 700;
       margin: 10px 5px 5px 0;
     }
@@ -32,29 +32,28 @@
     .pure-g { margin-bottom: 25px; }
     .description-left { padding-right: 20px; }
 
-    /* Inline text accents used in the copy */
+    /* Inline text accents */
     #small_text { font-size: 12px; }
     .gray_text { color: #D3D3D3; font-weight: bold; text-shadow: 1px 1px 0px black; }
 
-    /* ====== Header Banner (Apple style) ====== */
+    /* ====== Header Banner (no fixed height) ====== */
     #banner {
       position: relative;
       padding: 20px;
-      background: url("media/apple_banner.jpeg") center top/cover no-repeat;
-      height: 180px; /* <<< compact clean height */
+      background: url("media/apple_banner.jpg") center/cover no-repeat;
       color: white;
       display: flex;
-      align-items: flex-end; /* keep title at bottom edge for Apple aesthetic */
+      align-items: flex-end;
       overflow: hidden;
     }
     #banner::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.35); /* overlay for contrast */
+      background: rgba(0,0,0,0.35);
     }
     #banner h1 { 
-      position: relative; 
+      position: relative;
       margin-bottom: 10px;
     }
 
@@ -82,7 +81,6 @@
         <div id="choro_frame">
           <div class="description-left">
             <h2>Global iPhone Market Share</h2>
-            <p>explanation</p>
             <p>The map gives a good overview on which countries have the most iPhone users.</p>
             <div id="small_text">
               <p>* <span class="gray_text">Gray</span> countries represent countries with no data</p>
