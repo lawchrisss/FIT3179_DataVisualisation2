@@ -83,7 +83,7 @@
       ],
       "mark": { "type": "geoshape", "stroke": "grey", "strokeWidth": 0.4 },
       "encoding": {
-        "color": { "value": "#E5E5E5" },
+        "color": { "value": "#DCEEFF" },
         "tooltip": [
           { "field": "labelCountry", "title": "COUNTRY" },
           { "field": "shareText", "title": "MARKET SHARE (%)" }
