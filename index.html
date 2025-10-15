@@ -83,6 +83,15 @@
       #choro_frame { grid-template-columns: 420px 1fr; align-items: start; }
     }
     #map { min-height: 420px; }
+    /* --- FIX MAP DISTORTION (scoped to #map only) --- */
+    #map { aspect-ratio: 16 / 9; }
+    #map .vega-embed,
+    #map .vega-embed > canvas,
+    #map .vega-embed > svg {
+      width: 100% !important;
+      height: auto !important;
+      max-width: 100%;
+    }
 
     /* ====== Vega dropdown styling (applies to ALL charts) ====== */
     .vega-bind { font-size: 14px; font-family: 'Poppins', sans-serif; margin: 8px 0 12px; }
@@ -201,7 +210,7 @@
     <section class="block" id="iphone_days_block">
       <h2>How Many Days Of Working To Own An iPhone 17</h2>
       <div id="iphone_days_chart"></div>
-      <h3 style="margin-top: 12px; font-size: 14px; opacity: 0.85;">Insights.....<br>Insights.....<br>Insights.....</h3>
+      <h3 style="margin-top: 12px; font-size: 14px; opacity: 0.85;">Insights.....</h3>
     </section>
 
     <!-- Footer -->
@@ -213,7 +222,10 @@
 
   <!-- JS -->
   <script>
-    vegaEmbed('#map', 'idioms/map.vl.json', { actions: false }).catch(console.error);
+    /* Map (renderer SVG + scoped CSS above prevents distortion) */
+    vegaEmbed('#map', 'idioms/map.vl.json', { actions: false, renderer: 'svg' }).catch(console.error);
+
+    /* Other charts unchanged */
     vegaEmbed('#apple_revenue_chart', 'idioms/area_stacked_chart.vl.json', { actions: false }).catch(console.error);
     vegaEmbed('#iphone_days_chart', 'idioms/iphone.vl.json', { actions: false }).catch(console.error);
   </script>
