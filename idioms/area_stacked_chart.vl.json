@@ -1,17 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
   "description": "Apple revenue share by category (2018 to 2024) with year dropdowns, legend filter, click highlight, and a pandemic annotation line.",
-  "title": {
-    "text": "Apple revenue by category 2018 to 2024",
-    "anchor": "middle",
-    "fontSize": 18,
-    "fontWeight": "bold"
-  },
-  "width": 1000,
-  "height": 700,
-  "background": "white",
-  "padding": { "left": 0, "right": 0, "top": 10, "bottom": 50 },
-
+  "width": 580,
+  "height": 500,
+  "background": "#f2f2f2",
   "data": {
     "url": "https://raw.githubusercontent.com/lawchrisss/FIT3179-week10/refs/heads/main/revenue_by_category.csv",
     "format": { "type": "csv" }
@@ -41,7 +33,7 @@
   "transform": [
     { "calculate": "toNumber(datum.Year)", "as": "YearNum" },
     {
-      "fold": ["iPhone_share","iPad_share","Mac_share","Wearables_share","Services_share"],
+      "fold": ["iPhone_share", "iPad_share", "Mac_share", "Wearables_share", "Services_share"],
       "as": ["Category_raw", "Share"]
     },
     { "calculate": "replace(datum.Category_raw, '_share', '')", "as": "Category" },
@@ -70,9 +62,7 @@
           }
         }
       ],
-      "transform": [
-        { "filter": { "param": "catFilter" } }
-      ],
+      "transform": [{ "filter": { "param": "catFilter" } }],
       "mark": { "type": "area", "interpolate": "monotone", "strokeWidth": 0 },
       "encoding": {
         "x": {
@@ -125,19 +115,12 @@
 
     {
       "data": { "values": [ { "Year": "2020" } ] },
-      "mark": {
-        "type": "rule",
-        "strokeDash": [6, 6],
-        "stroke": "black",
-        "strokeWidth": 2
-      },
-      "encoding": {
-        "x": { "field": "Year", "type": "ordinal", "bandPosition": 0 }
-      }
+      "mark": { "type": "rule", "strokeDash": [6, 6], "stroke": "black", "strokeWidth": 2 },
+      "encoding": { "x": { "field": "Year", "type": "ordinal", "bandPosition": 0 } }
     },
 
     {
-      "data": { "values": [ { "Year": "2020", "label": "Covid -19 Pandemic caused the dip in revenue" } ] },
+      "data": { "values": [ { "Year": "2020", "label": "Covid-19 Pandemic caused the dip in revenue" } ] },
       "mark": {
         "type": "text",
         "align": "left",
