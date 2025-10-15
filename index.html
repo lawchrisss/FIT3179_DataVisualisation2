@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>All About Apple.</title>
 
   <!-- Fonts & grid -->
@@ -15,91 +16,82 @@
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
 
   <style>
-    /* ====== Base & Typography ====== */
-    body { background-color: white; margin: 0; }
-    .page { width: 1200px; margin: auto; padding: 35px 50px 50px; }
-    h1 {
-      font-family: 'Poppins', sans-serif;
-      font-size: 42px;
-      font-weight: 700;
-      margin: 10px 5px 5px 0;
-    }
-    h2 {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 700;
-      margin-top: 0;
-    }
-    .pure-g { margin-bottom: 25px; }
-    .description-left { padding-right: 20px; }
+    /* ===== Base & Typography ===== */
+    :root { --bg-soft: #f2f2f2; }
+    * { box-sizing: border-box; }
+    body { background: #fff; margin: 0; font-family: 'Poppins', sans-serif; color: #111; }
+    .page { width: 1200px; max-width: 95vw; margin: auto; padding: 35px 20px 60px; }
 
-    /* Inline text accents */
-    #small_text { font-size: 12px; }
-    .blue_text { color: #DCEEFF; font-weight: bold; text-shadow: 1px 1px 0px black; }
+    h1 { font-size: 42px; font-weight: 700; margin: 10px 5px 5px 0; }
+    h2 { font-weight: 700; margin: 0 0 10px; }
 
-    /* ====== Header Banner (no fixed height) ====== */
+    /* ===== Header Banner ===== */
     #banner {
       position: relative;
       padding: 20px;
       background: url("media/apple_banner.jpg") center/cover no-repeat;
       color: white;
-      display: flex;
-      align-items: flex-end;
+      display: flex; align-items: flex-end;
+      min-height: 120px; border-radius: 12px;
       overflow: hidden;
     }
-    #banner::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.35);
-    }
-    #banner h1 { 
-      position: relative;
-      margin-bottom: 10px;
-    }
+    #banner::before { content:""; position:absolute; inset:0; background: rgba(0,0,0,0.35); }
+    #banner h1 { position: relative; margin: 0; }
 
-    /* ====== Map section ====== */
+    /* ===== Map Section ===== */
     #choro_frame {
-      background-color: #f2f2f2; /* matches Vega-Lite config.background */
-      padding: 20px;
+      background: var(--bg-soft);
+      padding: 22px;
+      border-radius: 12px;
     }
-    #choro_frame p { margin-right: 650px; }
-    #map { padding-right: 10px; }
+    .description-left p { margin: 0 0 10px; line-height: 1.5; }
+    .note { font-size: 12px; opacity: 0.9; }
+    .note .blue_text { color: #9fc7ff; font-weight: 700; text-shadow: 0 0 0.5px #000; }
+
+    .vis { min-height: 520px; } /* keeps layout steady while vega loads */
   </style>
 </head>
+
 <body>
   <div class="page">
-    <!-- Header (title only) -->
-    <div class="pure-g" id="banner">
-      <div class="pure-u-1-1">
-        <h1>All About Apple.</h1>
-      </div>
+    <!-- Header -->
+    <div id="banner">
+      <h1>All About Apple.</h1>
     </div>
 
     <!-- Map block -->
-    <div class="pure-g">
-      <div class="pure-u-1-1">
-        <div id="choro_frame">
-          <div class="description-left">
+    <div class="pure-g" style="margin-top: 24px;">
+      <div class="pure-u-1">
+        <div id="choro_frame" class="pure-g">
+          <!-- Text -->
+          <div class="pure-u-1 pure-u-md-1-3 description-left" style="padding-right:16px;">
             <h2>Global iPhone Market Share</h2>
-            <p>This map compares iPhone vs Non-iPhone market share using a selectable filter. When iPhone Market Share is selected, darker regions highlight countries where Apple has strong adoption 
-              (such as the US, Japan, Australia, and Western Europe), while lighter areas indicate markets dominated by other smartphone brands. Light blue countries represent missing or unavailable data.</p>
-            <div id="small_text">
-              <p>* <span class="blue_text">Light Blue</span> countries represent countries with no data</p>
-            </div>
+            <p>
+              This map compares <strong>iPhone vs Non-iPhone market share</strong> via a selectable filter.<br><br>
+              When <strong>iPhone Market Share</strong> is selected, <strong>darker regions</strong> show countries where Apple adoption is strongest
+              (e.g., US, Japan, Australia, Western Europe).<br>
+              <strong>Lighter areas</strong> indicate markets dominated by other brands.<br><br>
+              <em>Light blue</em> countries have <strong>no available data</strong>.
+            </p>
+            <p class="note">* <span class="blue_text">Light Blue</span> = no data</p>
           </div>
-          <div id="map"></div>
+
+          <!-- Vis -->
+          <div class="pure-u-1 pure-u-md-2-3">
+            <div id="map" class="vis"></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Your JS -->
+  <!-- Vega-Embed -->
   <script>
-    // Loads your updated Vega-Lite spec with light-blue "No Data" and #f2f2f2 background
-    var vis1 = "idioms/map.vl.json";
+    // Update this path if your spec lives elsewhere
+    const vis1 = "idioms/map.vl.json";
     vegaEmbed('#map', vis1, { actions: false })
-      .then(function(result){ /* result.view available if needed */ })
-      .catch(console.error);
+      .then(res => { /* res.view available if needed */ })
+      .catch(err => console.error(err));
   </script>
 </body>
 </html>
