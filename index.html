@@ -36,12 +36,25 @@
     #small_text { font-size: 12px; }
     .gray_text { color: #D3D3D3; font-weight: bold; text-shadow: 1px 1px 0px black; }
 
-    /* ====== Header (title only, no audio) ====== */
+    /* ====== Header (banner with image, no audio) ====== */
     #banner {
-      padding: 25px 20px;
-      background: #20445f;
+      position: relative;
+      padding: 30px;
+      background: url("media/apple_banner.jpeg") center/cover no-repeat;
+      height: 300px;               /* tweak 260–350px to taste */
       color: white;
+      display: flex;
+      align-items: flex-end;       /* title sits near bottom like Apple hero */
+      overflow: hidden;
     }
+    /* Soft overlay for contrast */
+    #banner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+    }
+    #banner h1 { position: relative; }
 
     /* ====== Map section ====== */
     #choro_frame {
