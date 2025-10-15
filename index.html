@@ -20,7 +20,7 @@
     .page { width: 1200px; margin: auto; padding: 35px 50px 50px; }
     h1 {
       font-family: 'Poppins', sans-serif;
-      font-size: 48px;
+      font-size: 42px; /* slight reduction for better proportion */
       font-weight: 700;
       margin: 10px 5px 5px 0;
     }
@@ -36,25 +36,27 @@
     #small_text { font-size: 12px; }
     .gray_text { color: #D3D3D3; font-weight: bold; text-shadow: 1px 1px 0px black; }
 
-    /* ====== Header (banner with image, no audio) ====== */
+    /* ====== Header Banner (Apple style) ====== */
     #banner {
       position: relative;
-      padding: 30px;
-      background: url("media/apple_banner.jpeg") center/cover no-repeat;
-      height: 260px;               /* tweak 260–350px to taste */
+      padding: 20px;
+      background: url("media/apple_banner.jpeg") center top/cover no-repeat;
+      height: 180px; /* <<< compact clean height */
       color: white;
       display: flex;
-      align-items: flex-end;       /* title sits near bottom like Apple hero */
+      align-items: flex-end; /* keep title at bottom edge for Apple aesthetic */
       overflow: hidden;
     }
-    /* Soft overlay for contrast */
     #banner::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.35);
+      background: rgba(0,0,0,0.35); /* overlay for contrast */
     }
-    #banner h1 { position: relative; }
+    #banner h1 { 
+      position: relative; 
+      margin-bottom: 10px;
+    }
 
     /* ====== Map section ====== */
     #choro_frame {
