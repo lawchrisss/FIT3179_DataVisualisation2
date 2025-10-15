@@ -36,41 +36,45 @@
     #small_text { font-size: 12px; }
     .blue_text { color: #DCEEFF; font-weight: bold; text-shadow: 1px 1px 0px black; }
 
-    /* ====== Header Banner (no fixed height) ====== */
+    /* ====== Header Banner ====== */
     #banner {
       position: relative;
       padding: 20px;
-      background: url("media/apple_banners.jpg") center/cover no-repeat;
+      background: url("media/banner.jpg") center/cover no-repeat;
       color: white;
       height: 120px;
       display: flex;
       align-items: flex-end;
       overflow: hidden;
+      border-radius: 6px;
     }
-    #banner::before {
+
+    /* ✅ Solid overlay on banner */
+    #banner::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.35);
+      background: rgba(0, 0, 0, 0.45); /* Adjust opacity if needed */
+      z-index: 0;
     }
-    #banner h1 { 
+    #banner * {
       position: relative;
-      margin-bottom: 10px;
+      z-index: 1; /* Keeps title visible above overlay */
     }
 
     /* ====== Map section ====== */
     #choro_frame {
-      background-color: #f2f2f2; /* matches Vega-Lite config.background */
+      background-color: #f2f2f2;
       padding: 20px;
+      border-radius: 6px;
     }
     #choro_frame p { margin-right: 650px; }
     #map { padding-right: 10px; }
 
-    /* ====== ADD: style Vega-Lite parameter dropdowns (no changes to your existing rules) ====== */
+    /* ====== Vega dropdown styling ====== */
     .vega-bind { font-size: 14px; font-family: 'Poppins', sans-serif; }
     .vega-bind label { margin-right: 6px; }
 
-    /* Use the exact dark select styling for the Vega-generated <select> elements */
     .vega-bind select {
       all: unset;
       --radius: 2px;
@@ -96,7 +100,7 @@
         linear-gradient(var(--accentBg) 42%, var(--accentFg) 42%);
       background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
       background-size: 1px 100%, 20px 22px, 20px 22px, 20px 100%;
-      background-position: right 20px center, right bottom, right bottom, right bottom;   
+      background-position: right 20px center, right bottom, right bottom, right bottom;
       cursor: pointer;
     }
     .vega-bind select:hover {
@@ -106,16 +110,28 @@
         linear-gradient(var(--accentFg) 42%, var(--accentBg) 42%);
     }
 
-    /* ====== ADD: Full-page background photo (media/background.jpg) ====== */
+    /* ====== Full-page background ====== */
     body {
       background: url("media/background.jpg") no-repeat center center fixed;
       background-size: cover;
+    }
+
+    /* ====== Footer ====== */
+    #footer_credit {
+      background: rgba(0,0,0,0.75);
+      color: #f2f2f2;
+      padding: 15px 30px;
+      margin-top: 40px;
+      font-size: 14px;
+      width: 100%;
+      text-align: center;
+      border-radius: 6px;
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <!-- Header (title only) -->
+    <!-- Header -->
     <div class="pure-g" id="banner">
       <div class="pure-u-1-1">
         <h1>All About Apple.</h1>
@@ -142,14 +158,18 @@
         </div>
       </div>
     </div>
+
+    <!-- Footer -->
+    <div id="footer_credit">
+      This visualisation is created by Chris Law Zi Qing
+    </div>
   </div>
 
-  <!-- Your JS -->
+  <!-- JS -->
   <script>
-    // Loads your updated Vega-Lite spec with light-blue "No Data" and #f2f2f2 background
     var vis1 = "idioms/map.vl.json";
     vegaEmbed('#map', vis1, { actions: false })
-      .then(function(result){ /* result.view available if needed */ })
+      .then(function(result){})
       .catch(console.error);
   </script>
 </body>
