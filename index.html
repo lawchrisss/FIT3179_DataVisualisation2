@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>All About Apple</title>
+  <title>All About Apple.</title>
 
   <!-- Fonts & grid -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -34,7 +34,7 @@
 
     /* Inline text accents */
     #small_text { font-size: 12px; }
-    .gray_text { color: #D3D3D3; font-weight: bold; text-shadow: 1px 1px 0px black; }
+    .blue_text { color: #DCEEFF; font-weight: bold; text-shadow: 1px 1px 0px black; }
 
     /* ====== Header Banner (no fixed height) ====== */
     #banner {
@@ -59,7 +59,7 @@
 
     /* ====== Map section ====== */
     #choro_frame {
-      background-color: #f2f2f2;
+      background-color: #f2f2f2; /* matches Vega-Lite config.background */
       padding: 20px;
     }
     #choro_frame p { margin-right: 650px; }
@@ -83,7 +83,7 @@
             <h2>Global iPhone Market Share</h2>
             <p>The map gives a good overview on which countries have the most iPhone users.</p>
             <div id="small_text">
-              <p>* <span class="gray_text">Gray</span> countries represent countries with no data</p>
+              <p>* <span class="blue_text">Light Blue</span> countries represent countries with no data</p>
             </div>
           </div>
           <div id="map"></div>
@@ -94,6 +94,7 @@
 
   <!-- Your JS -->
   <script>
+    // Loads your updated Vega-Lite spec with light-blue "No Data" and #f2f2f2 background
     var vis1 = "idioms/map.vl.json";
     vegaEmbed('#map', vis1, { actions: false })
       .then(function(result){ /* result.view available if needed */ })
