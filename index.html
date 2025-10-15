@@ -20,9 +20,12 @@
     .page { width: 1200px; margin: auto; padding: 35px 50px 50px; }
     h1 { font-family: 'Poppins', sans-serif; font-size: 42px; font-weight: 700; margin: 10px 5px 5px 0; }
     h2 { font-family: 'Poppins', sans-serif; font-weight: 700; margin-top: 0; }
-    .pure-g { margin-bottom: 25px; }
-    .description-left { padding-right: 20px; }
     .small-font { font-size: 14px; }
+
+    /* Unified vertical rhythm for all blocks */
+    .section-block { margin-top: 40px; }
+    /* Smaller gap ONLY for the first section (under banner) */
+    .pure-g.section-block:first-of-type { margin-top: 20px; }
 
     /* Inline text accents */
     #small_text { font-size: 12px; }
@@ -34,7 +37,7 @@
       padding: 20px;
       background: url("media/banner.jpg") center/cover no-repeat;
       color: white;
-      height: 120px;
+      height: 140px;
       display: flex;
       align-items: flex-end;
       overflow: hidden;
@@ -48,6 +51,7 @@
       z-index: 0;
     }
     #banner * { position: relative; z-index: 1; }
+    #banner-subtitle { margin: 2px 0 0 0; font-size: 20px; font-weight: 400; opacity: 0.85; }
 
     /* ====== Map section ====== */
     #choro_frame {
@@ -55,6 +59,7 @@
       padding: 20px;
       border-radius: 6px;
     }
+    #choro_frame .description-left { padding-right: 20px; }
     #choro_frame p { margin-right: 650px; }
     #map { padding-right: 10px; }
 
@@ -103,7 +108,7 @@
     }
 
     /* ====== Revenue section ====== */
-    #revenue_section { display: flex; width: 100%; margin-top: 40px; }
+    #revenue_section { display: flex; width: 100%; }
     .revenue-left {
       width: 70%;
       padding: 20px;
@@ -118,11 +123,17 @@
       margin-left: 0;
     }
 
+    /* ====== iPhone days block ====== */
+    #iphone_days_block {
+      background: #f2f2f2;
+      padding: 20px;
+      border-radius: 6px;
+    }
+
     /* ====== Footer ====== */
     #footer_credit {
       position: relative;
       padding: 20px;
-      margin-top: 40px;
       font-size: 14px;
       color: white;
       text-align: left;
@@ -138,14 +149,6 @@
       z-index: 0;
     }
     #footer_credit * { position: relative; z-index: 1; }
-
-    /* ====== iPhone days block (full-width like map) ====== */
-    #iphone_days_block {
-      background: #f2f2f2;
-      padding: 20px;
-      border-radius: 6px;
-      margin-top: 40px;
-    }
   </style>
 </head>
 <body>
@@ -153,13 +156,13 @@
     <!-- Header -->
     <div class="pure-g" id="banner">
       <div class="pure-u-1-1">
-        <h1>All About Apple.</h1><br>
-        <h2 style="margin: 2px 0 0 0; font-size: 20px; font-weight: 400; opacity: 0.85;">Subtitle</h2>
+        <h1>All About Apple.</h1>
+        <h2 id="banner-subtitle">Subtitle</h2>
       </div>
     </div>
     
     <!-- Map block -->
-    <div class="pure-g">
+    <div class="pure-g section-block">
       <div class="pure-u-1-1">
         <div id="choro_frame">
           <div class="description-left">
@@ -168,7 +171,7 @@
               This map compares <strong>iPhone vs Non-iPhone market share</strong> via a selectable filter.<br><br>
               When <strong>iPhone Market Share</strong> is selected, <br>
               <strong>Darker regions</strong> show countries where Apple adoption is strongest.<br>
-              <strong>Lighter areas</strong> indicate markets dominated by other brands.<br>
+              <strong>Lighter areas</strong> indicate markets dominated by other brands.
             </p>
             <div id="small_text">
               <p>* <span class="blue_text">Light Blue</span> countries represent countries with no data</p>
@@ -180,31 +183,30 @@
     </div>
 
     <!-- Revenue section -->
-    <div id="revenue_section">
+    <div id="revenue_section" class="section-block">
       <div class="revenue-left">
         <h2>Apple Revenue by Category</h2>
         <div id="apple_revenue_chart"></div>
       </div>
       <div class="revenue-right">
-        <h3 class="small-font">
-          Insights......
-        </h3>
+        <h3 class="small-font">Insights......</h3>
       </div>
     </div>
 
-    <!-- iPhone Days Emoji Chart (full-width single block) -->
-    <div id="iphone_days_block">
+    <!-- iPhone Days Emoji Chart -->
+    <div id="iphone_days_block" class="section-block">
       <h2>How Many Days Of Working To Own An iPhone 17</h2>
-      <div id="iphone_days_chart"></div><br>
-      <h3 style="margin-top: 15px; font-size: 14px; opacity: 0.85;">
-        <!-- Insert commentary here -->
+      <div id="iphone_days_chart"></div>
+      <h3 class="small-font" style="margin-top: 15px; opacity: 0.85;">
         Insights..................<br>Insights..................<br>Insights..................
       </h3>
     </div>
 
     <!-- Footer -->
-    <div id="footer_credit">
-      This visualisation is created by Chris Law Zi Qing<br>Published on 16th October 2025<br>Data Source: Company X, Company Y
+    <div id="footer_credit" class="section-block">
+      This visualisation is created by Chris Law Zi Qing<br>
+      Published on 16th October 2025<br>
+      Data Source: Company X, Company Y
     </div>
   </div>
 
@@ -220,7 +222,7 @@
       .then(function(result){})
       .catch(console.error);
 
-    // iPhone Days Emoji Chart (uses your iphone.vl.json spec)
+    // iPhone Days Emoji Chart
     vegaEmbed('#iphone_days_chart', 'idioms/iphone.vl.json', { actions: false })
       .then(function(result){})
       .catch(console.error);
