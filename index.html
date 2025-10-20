@@ -30,7 +30,7 @@
       text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
     }
 
-    /* Subtitle in Poppins */
+    /* Subtitle (kept if needed later) */
     #banner-subtitle {
       font-family: 'Poppins', sans-serif;
       text-align: center;
@@ -75,6 +75,37 @@
     }
     #banner * { position: relative; z-index: 1; }
 
+    /* ====== Steve Jobs Intro (image left, text right) ====== */
+    #jobs_intro {
+      display: flex;
+      width: 100%;
+    }
+    .jobs-left {
+      width: 30%;
+      padding: 20px;
+      background: #f2f2f2;
+      border-radius: 6px;
+    }
+    .jobs-right {
+      width: 70%;
+      padding: 20px;
+      background: #e0e0e0;
+      border-radius: 6px;
+      margin-left: 28px;
+    }
+    .jobs-photo {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background: url('media/stevejobs.jpg') center/cover no-repeat, #ddd;
+      border-radius: 8px;
+    }
+    .jobs-text {
+      padding-left: 24px;
+    }
+    @media (max-width: 768px) {
+      .jobs-text { padding-left: 0; margin-top: 16px; }
+    }
+
     /* ====== Map section ====== */
     #choro_frame {
       background-color: #f2f2f2;
@@ -94,6 +125,40 @@
       background-size: cover;
     }
 
+    /* ====== Timeline (Mini Cards 4×2) ====== */
+    .timeline-container {
+      background: #f5f5f5;
+      border-radius: 10px;
+      padding: 40px;
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+    .timeline-title {
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 30px;
+    }
+    .timeline-grid.fixed-four {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 6px 12px rgba(0,0,0,0.25); }
+    .card h3 { font-family: 'Poppins', sans-serif; color: #9B2226; margin-bottom: 10px; font-weight: 600; }
+    .card p { font-family: 'Poppins', sans-serif; font-size: 14px; color: #333; line-height: 1.4; }
+
+    @media (max-width: 900px) { .timeline-grid.fixed-four { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .timeline-grid.fixed-four { grid-template-columns: 1fr; } }
+
     /* ====== Revenue section ====== */
     #revenue_section { display: flex; width: 100%; }
     .revenue-left {
@@ -111,11 +176,7 @@
     }
 
     /* ====== iPhone days block ====== */
-    #iphone_days_block {
-      background: #f2f2f2;
-      padding: 20px;
-      border-radius: 6px;
-    }
+    #iphone_days_block { background: #f2f2f2; padding: 20px; border-radius: 6px; }
 
     /* ====== Footer ====== */
     #footer_credit {
@@ -128,13 +189,7 @@
       overflow: hidden;
       background: url("media/footer.jpg") center/cover no-repeat;
     }
-    #footer_credit::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.45);
-      z-index: 0;
-    }
+    #footer_credit::after { content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.45); z-index: 0; }
     #footer_credit * { position: relative; z-index: 1; }
   </style>
 </head>
@@ -144,6 +199,56 @@
     <div class="pure-g" id="banner">
       <div class="pure-u-1-1">
         <h1 class="apple-title">All About Apple.</h1>
+      </div>
+    </div>
+
+    <!-- Steve Jobs Intro (image left, text right) -->
+    <div id="jobs_intro" class="section-block">
+      <div class="jobs-left">
+        <div class="jobs-photo" aria-label="Steve Jobs image"></div>
+      </div>
+      <div class="jobs-right jobs-text">
+        <h2>Steve Jobs & The Apple Story</h2>
+        <p>A brief introduction to Apple’s beginnings and the philosophy that guided its products. Jobs’s focus on simplicity, end-to-end experience, and bold design decisions shaped the trajectory from the Macintosh to the iPhone and beyond.</p>
+      </div>
+    </div>
+
+    <!-- Timeline Mini Cards (4 per row, 2 rows) -->
+    <div class="timeline-container section-block">
+      <h2 class="timeline-title">Major Apple Innovations</h2>
+      <div class="timeline-grid fixed-four">
+        <div class="card">
+          <h3>1976</h3>
+          <p>Apple I released — the first computer built by Steve Jobs and Steve Wozniak in a garage.</p>
+        </div>
+        <div class="card">
+          <h3>1984</h3>
+          <p>Launch of Macintosh — introducing the graphical user interface to personal computing.</p>
+        </div>
+        <div class="card">
+          <h3>1997</h3>
+          <p>Steve Jobs returns — strategic reset and the beginning of Apple's modern era.</p>
+        </div>
+        <div class="card">
+          <h3>2001</h3>
+          <p>iPod revolutionizes music consumption worldwide.</p>
+        </div>
+        <div class="card">
+          <h3>2007</h3>
+          <p>iPhone changes how humans interact with technology forever.</p>
+        </div>
+        <div class="card">
+          <h3>2010</h3>
+          <p>iPad launches — creating a new device category between laptops and phones.</p>
+        </div>
+        <div class="card">
+          <h3>2015</h3>
+          <p>Apple Watch introduces wearable tech to the mainstream market.</p>
+        </div>
+        <div class="card">
+          <h3>2020</h3>
+          <p>Apple Silicon (M1) transforms computing efficiency and performance.</p>
+        </div>
       </div>
     </div>
 
