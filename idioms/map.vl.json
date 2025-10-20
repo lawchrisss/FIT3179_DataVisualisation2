@@ -58,14 +58,9 @@
     { "calculate": "datum.continent || 'Unknown'", "as": "continent_safe" }
   ],
   "layer": [
-    {
-      "data": { "sphere": true },
-      "mark": { "type": "geoshape", "fill": "#cfe7ff" }
-    },
-    {
-      "data": { "graticule": { "step": [20, 20] } },
-      "mark": { "type": "geoshape", "stroke": "#8bb6d9", "strokeWidth": 0.6, "opacity": 0.6 }
-    },
+    { "data": { "sphere": true }, "mark": { "type": "geoshape", "fill": "#cfe7ff" } },
+    { "data": { "graticule": { "step": [20, 20] } }, "mark": { "type": "geoshape", "stroke": "#8bb6d9", "strokeWidth": 0.6, "opacity": 0.6 } },
+
     {
       "transform": [
         { "filter": "!isValid(datum.share) || isNaN(datum.share)" },
@@ -80,6 +75,7 @@
         ]
       }
     },
+
     {
       "transform": [{ "filter": "isValid(datum.share) && !isNaN(datum.share)" }],
       "mark": { "type": "geoshape", "stroke": "grey", "strokeWidth": 0.4 },
@@ -109,6 +105,68 @@
           { "field": "continent_safe", "title": "CONTINENT" },
           { "field": "share", "title": "MARKET SHARE (%)", "format": ".1f" }
         ]
+      }
+    },
+
+    {
+      "data": {
+        "values": [
+          { "label": "United States", "lon": -98.583, "lat": 39.833, "lx": -135, "ly": 32 },
+          { "label": "India",         "lon": 78.963,  "lat": 20.594, "lx": 80,   "ly": -10 },
+          { "label": "Malaysia",      "lon": 101.976, "lat": 4.211,  "lx": 95,   "ly": -20 }
+        ]
+      },
+      "transform": [
+        { "calculate": "datum.lx + (datum.lx - datum.lon) * 0.02", "as": "ex" },
+        { "calculate": "datum.ly + (datum.ly - datum.lat) * 0.02", "as": "ey" },
+        { "calculate": "{'type':'Feature','geometry':{'type':'LineString','coordinates': [[datum.lon, datum.lat],[datum.ex, datum.ey]]}}", "as": "geo" }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#111111",
+        "strokeWidth": 1.4,
+        "strokeCap": "butt",
+        "strokeJoin": "round",
+        "fill": null
+      },
+      "encoding": { "shape": { "field": "geo", "type": "geojson" } }
+    },
+
+    {
+      "data": {
+        "values": [
+          { "label": "United States", "lon": -98.583, "lat": 39.833, "lx": -150, "ly": 30 },
+          { "label": "India",         "lon": 78.963,  "lat": 20.594, "lx": 75,   "ly": -10 },
+          { "label": "Malaysia",      "lon": 101.976, "lat": 4.211,  "lx": 95,   "ly": -20 }
+        ]
+      },
+      "mark": { "type": "point", "filled": true, "color": "#111111", "size": 55 },
+      "encoding": { "longitude": { "field": "lon" }, "latitude": { "field": "lat" } }
+    },
+
+    {
+      "data": {
+        "values": [
+          { "label": "United States", "lon": -98.583, "lat": 39.833, "lx": -150, "ly": 29 },
+          { "label": "India",         "lon": 78.963,  "lat": 20.594, "lx": 75,   "ly": -15 },
+          { "label": "Malaysia",      "lon": 101.976, "lat": 4.211,  "lx": 87,   "ly": -23 }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "font": "Poppins",
+        "fontSize": 15,
+        "fontWeight": 600,
+        "align": "left",
+        "baseline": "middle",
+        "dx": 0,
+        "dy": 0,
+        "fill": "#111111"
+      },
+      "encoding": {
+        "longitude": { "field": "lx" },
+        "latitude": { "field": "ly" },
+        "text": { "field": "label" }
       }
     }
   ],
