@@ -155,7 +155,7 @@
       "mark": {
         "type": "text",
         "font": "Poppins",
-        "fontSize": 15,
+        "fontSize": 13,
         "fontWeight": 600,
         "align": "left",
         "baseline": "middle",
