@@ -134,7 +134,7 @@
       ]
     },
     {
-      "width": 750,
+      "width": 800,
       "height": 80,
       "title": { "text": "Drag here to filter main chart", "fontSize": 12, "anchor": "middle", "dy": -5 },
       "mark": { "type": "area", "color": "#444444" },
