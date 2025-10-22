@@ -16,22 +16,22 @@
     }
   },
   "spec": {
-    "width": 140,
-    "height": 140,
+    "width": 200,
+    "height": 200,
     "transform": [
       { "calculate": "format(datum.Sales_Percentage, '.1f') + '%'", "as": "pctLabel" }
     ],
     "layer": [
       {
         "data": { "values": [{ "v": 100 }] },
-        "mark": { "type": "arc", "innerRadius": 35, "outerRadius": 65 },
+        "mark": { "type": "arc", "innerRadius": 40, "outerRadius": 100 },
         "encoding": {
           "theta": { "field": "v", "type": "quantitative" },
           "color": { "value": "#e6e6e6" }
         }
       },
       {
-        "mark": { "type": "arc", "innerRadius": 35, "outerRadius": 65 },
+        "mark": { "type": "arc", "innerRadius": 40, "outerRadius": 100 },
         "encoding": {
           "theta": { "field": "Sales_Percentage", "type": "quantitative" },
           "color": {
