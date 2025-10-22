@@ -97,7 +97,19 @@
     .map-subtitle { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 1; opacity: 0.95; margin-top: 6px; margin-bottom: 12px; }
 
     /* ===== Chart Containers ===== */
-    #choro_frame, #stock_frame { background-color: #f2f2f2; padding: 20px; border-radius: 6px; }
+    #choro_frame, #stock_frame {
+      background-color: #f2f2f2;
+      padding: 20px;
+      border-radius: 6px;
+    }
+
+    /* Shortened stock frame only */
+    #stock_frame {
+      background-color: #f2f2f2;
+      padding: 20px;
+      border-radius: 6px;
+      width: 80%; /* Makes stock frame shorter */
+    }
 
     /* ===== Global Background ===== */
     body { background: url("media/background.jpg") no-repeat center center fixed; background-size: cover; }
