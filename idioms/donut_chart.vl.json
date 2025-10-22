@@ -1,0 +1,70 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "iPhone sales share by region (2024) — donut small multiples",
+  "background": "#f2f2f2",
+  "data": {
+    "url": "https://raw.githubusercontent.com/lawchrisss/FIT3179_DataVisualisation2/refs/heads/main/datasets/sales_by_region.csv"
+  },
+  "facet": {
+    "field": "Region",
+    "type": "nominal",
+    "sort": ["Americas", "Europe", "China", "Japan", "Rest of Asia Pacific"],
+    "header": {
+      "labelFontSize": 14,
+      "labelFontWeight": "bold",
+      "title": null
+    }
+  },
+  "spec": {
+    "width": 140,
+    "height": 140,
+    "transform": [
+      { "calculate": "format(datum.Sales_Percentage, '.1f') + '%'", "as": "pctLabel" }
+    ],
+    "layer": [
+      {
+        "data": { "values": [{ "v": 100 }] },
+        "mark": { "type": "arc", "innerRadius": 35, "outerRadius": 65 },
+        "encoding": {
+          "theta": { "field": "v", "type": "quantitative" },
+          "color": { "value": "#e6e6e6" }
+        }
+      },
+      {
+        "mark": { "type": "arc", "innerRadius": 35, "outerRadius": 65 },
+        "encoding": {
+          "theta": { "field": "Sales_Percentage", "type": "quantitative" },
+          "color": {
+            "field": "Region",
+            "type": "nominal",
+            "legend": null,
+            "scale": {
+              "range": ["#ebd6aa", "#a24a45", "#f8c1ab", "#a2a4c6", "#a2b7cb"]
+            }
+          },
+          "tooltip": [
+            { "field": "Region", "type": "nominal" },
+            { "field": "Sales_mm", "type": "quantitative", "title": "Sales (million)" },
+            { "field": "Sales_Percentage", "type": "quantitative", "title": "Share (%)", "format": ".1f" }
+          ]
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "fontSize": 14,
+          "fontWeight": "bold",
+          "align": "center",
+          "baseline": "middle"
+        },
+        "encoding": {
+          "text": { "field": "pctLabel", "type": "nominal" }
+        }
+      }
+    ]
+  },
+  "config": {
+    "view": { "stroke": null },
+    "arc": { "stroke": null }
+  }
+}
