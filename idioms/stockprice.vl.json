@@ -1,8 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Apple Stock Price (2016–2025)",
-  "width": 800,
-  "height": 400,
+  "description": "Apple Stock Price (2016–2025) with brush, zoom, and annotations",
   "background": "#f2f2f2",
   "data": {
     "url": "https://raw.githubusercontent.com/lawchrisss/FIT3179_DataVisualisation2/refs/heads/main/datasets/apple_stockprice_2014-2025.csv"
@@ -11,97 +9,143 @@
     { "calculate": "toDate(datum.Date)", "as": "Date" },
     { "filter": "year(datum.Date) >= 2016 && year(datum.Date) <= 2025" }
   ],
-  "layer": [
+  "vconcat": [
     {
-      "mark": {
-        "type": "area",
-        "line": { "color": "#333333" },
-        "color": {
-          "gradient": "linear",
-          "x1": 1, "y1": 1, "x2": 1, "y2": 0,
-          "stops": [
-            { "offset": 0, "color": "#555555" },
-            { "offset": 1, "color": "white" }
-          ]
-        },
-        "tooltip": true
-      },
-      "encoding": {
-        "x": {
-          "field": "Date",
-          "type": "temporal",
-          "axis": {
-            "format": "%b %Y",
-            "grid": false,
-            "labelAngle": 0,
-            "title": null,
-            "tickCount": { "interval": "year", "step": 1 },
-            "values": [
-              { "year": 2016, "month": "Sep" },
-              { "year": 2017, "month": "Sep" },
-              { "year": 2018, "month": "Sep" },
-              { "year": 2019, "month": "Sep" },
-              { "year": 2020, "month": "Sep" },
-              { "year": 2021, "month": "Sep" },
-              { "year": 2022, "month": "Sep" },
-              { "year": 2023, "month": "Sep" },
-              { "year": 2024, "month": "Sep" },
-              { "year": 2025, "month": "Sep" }
+      "width": 800,
+      "height": 360,
+      "layer": [
+        {
+          "mark": {
+            "type": "area",
+            "tooltip": true,
+            "line": { "color": "#333333" },
+            "color": {
+              "gradient": "linear",
+              "x1": 1,
+              "y1": 1,
+              "x2": 1,
+              "y2": 0,
+              "stops": [
+                { "offset": 0, "color": "#444444" },
+                { "offset": 1, "color": "white" }
+              ]
+            }
+          },
+          "encoding": {
+            "x": {
+              "field": "Date",
+              "type": "temporal",
+              "scale": { "domain": { "param": "brush" } },
+              "axis": {
+                "format": "%Y",
+                "grid": false,
+                "labelAngle": 0,
+                "title": null,
+                "tickCount": { "interval": "year", "step": 1 }
+              }
+            },
+            "y": {
+              "field": "Close",
+              "type": "quantitative",
+              "title": "Stock Price (USD)",
+              "axis": { "grid": false }
+            },
+            "tooltip": [
+              { "field": "Date", "type": "temporal", "title": "Date", "format": "%b %Y" },
+              { "field": "Close", "type": "quantitative", "title": "Closing Price" }
             ]
           }
         },
+        {
+          "transform": [{ "filter": "year(datum.Date) == 2017 && month(datum.Date) == 10" }],
+          "mark": { "type": "point", "filled": true, "fill": "#d62828", "color": "#d62828", "size": 70 },
+          "encoding": {
+            "x": { "field": "Date", "type": "temporal", "scale": { "domain": { "param": "brush" } } },
+            "y": { "field": "Close", "type": "quantitative" }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "center",
+            "dx": 0,
+            "dy": -15,
+            "fontSize": 11,
+            "color": "#333333",
+            "fontWeight": "bold"
+          },
+          "transform": [{ "filter": "year(datum.Date) == 2017 && month(datum.Date) == 10" }],
+          "encoding": {
+            "x": { "field": "Date", "type": "temporal", "scale": { "domain": { "param": "brush" } } },
+            "y": { "field": "Close", "type": "quantitative" },
+            "text": { "value": "iPhone X Launch (Nov 2017)" }
+          }
+        },
+        {
+          "transform": [{ "filter": "year(datum.Date) == 2020 && month(datum.Date) == 2" }],
+          "mark": { "type": "point", "filled": true, "fill": "#d62828", "color": "#d62828", "size": 70 },
+          "encoding": {
+            "x": { "field": "Date", "type": "temporal", "scale": { "domain": { "param": "brush" } } },
+            "y": { "field": "Close", "type": "quantitative" }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 10,
+            "dy": 0,
+            "fontSize": 11,
+            "color": "#333333",
+            "fontWeight": "bold"
+          },
+          "transform": [{ "filter": "year(datum.Date) == 2020 && month(datum.Date) == 2" }],
+          "encoding": {
+            "x": { "field": "Date", "type": "temporal", "scale": { "domain": { "param": "brush" } } },
+            "y": { "field": "Close", "type": "quantitative" },
+            "text": { "value": "COVID-19 Shock (Mar 2020)" }
+          }
+        },
+        {
+          "transform": [{ "filter": "year(datum.Date) == 2020 && month(datum.Date) == 7" }],
+          "mark": { "type": "point", "filled": true, "fill": "#d62828", "color": "#d62828", "size": 70 },
+          "encoding": {
+            "x": { "field": "Date", "type": "temporal", "scale": { "domain": { "param": "brush" } } },
+            "y": { "field": "Close", "type": "quantitative" }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "center",
+            "dx": 0,
+            "dy": -15,
+            "fontSize": 11,
+            "color": "#333333",
+            "fontWeight": "bold"
+          },
+          "transform": [{ "filter": "year(datum.Date) == 2020 && month(datum.Date) == 7" }],
+          "encoding": {
+            "x": { "field": "Date", "type": "temporal", "scale": { "domain": { "param": "brush" } } },
+            "y": { "field": "Close", "type": "quantitative" },
+            "text": { "value": "Stock Split (Aug 2020)" }
+          }
+        }
+      ]
+    },
+    {
+      "width": 800,
+      "height": 80,
+      "title": { "text": "Drag here to filter main chart", "fontSize": 12, "anchor": "middle", "dy": -5 },
+      "mark": { "type": "area", "color": "#444444" },
+      "params": [{ "name": "brush", "select": { "type": "interval", "encodings": ["x"] } }],
+      "encoding": {
+        "x": { "field": "Date", "type": "temporal", "axis": { "format": "%Y", "title": null } },
         "y": {
           "field": "Close",
           "type": "quantitative",
-          "title": "Stock Price (USD)",
-          "axis": { "grid": false }
-        },
-        "tooltip": [
-          { "field": "Date", "type": "temporal", "title": "Date", "format": "%b %Y" },
-          { "field": "Close", "type": "quantitative", "title": "Closing Price" }
-        ]
-      }
-    },
-    {
-      "transform": [{ "filter": "year(datum.Date) == 2017 && month(datum.Date) == 10" }],
-      "mark": { "type": "point", "filled": true, "fill": "#d62828", "color": "#d62828", "size": 70 },
-      "encoding": { "x": { "field": "Date", "type": "temporal" }, "y": { "field": "Close", "type": "quantitative" } }
-    },
-    {
-      "mark": { "type": "text", "align": "center", "dx": 0, "dy": -15, "fontSize": 11, "color": "#333333", "fontWeight": "bold" },
-      "transform": [{ "filter": "year(datum.Date) == 2017 && month(datum.Date) == 10" }],
-      "encoding": {
-        "x": { "field": "Date", "type": "temporal" },
-        "y": { "field": "Close", "type": "quantitative" },
-        "text": { "value": "iPhone X Launch (Nov 2017)" }
-      }
-    },
-    {
-      "transform": [{ "filter": "year(datum.Date) == 2020 && month(datum.Date) == 2" }],
-      "mark": { "type": "point", "filled": true, "fill": "#d62828", "color": "#d62828", "size": 70 },
-      "encoding": { "x": { "field": "Date", "type": "temporal" }, "y": { "field": "Close", "type": "quantitative" } }
-    },
-    {
-      "mark": { "type": "text", "align": "left", "dx": 10, "dy": 0, "fontSize": 11, "color": "#333333", "fontWeight": "bold" },
-      "transform": [{ "filter": "year(datum.Date) == 2020 && month(datum.Date) == 2" }],
-      "encoding": {
-        "x": { "field": "Date", "type": "temporal" },
-        "y": { "field": "Close", "type": "quantitative" },
-        "text": { "value": "COVID-19 Shock (Mar 2020)" }
-      }
-    },
-    {
-      "transform": [{ "filter": "year(datum.Date) == 2020 && month(datum.Date) == 7" }],
-      "mark": { "type": "point", "filled": true, "fill": "#d62828", "color": "#d62828", "size": 70 },
-      "encoding": { "x": { "field": "Date", "type": "temporal" }, "y": { "field": "Close", "type": "quantitative" } }
-    },
-    {
-      "mark": { "type": "text", "align": "center", "dx": 0, "dy": -15, "fontSize": 11, "color": "#333333", "fontWeight": "bold" },
-      "transform": [{ "filter": "year(datum.Date) == 2020 && month(datum.Date) == 7" }],
-      "encoding": {
-        "x": { "field": "Date", "type": "temporal" },
-        "y": { "field": "Close", "type": "quantitative" },
-        "text": { "value": "Stock Split (Aug 2020)" }
+          "axis": { "tickCount": 3, "grid": false, "title": null }
+        }
       }
     }
   ],
