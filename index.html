@@ -126,6 +126,9 @@
     .revenue-left { width: 70%; padding: 20px; background: #f2f2f2; border-radius: 6px; }
     .revenue-right { width: 30%; padding: 20px; background: #e0e0e0; border-radius: 6px; margin-left: 28px; }
 
+    /* New donut section styling */
+    #donut_section { background: #f2f2f2; padding: 20px; border-radius: 6px; }
+
     #iphone_days_block { background: #f2f2f2; padding: 20px; border-radius: 6px; }
 
     #footer_credit {
@@ -234,6 +237,15 @@
       </div>
     </div>
 
+    <!-- New Donut Section -->
+    <div id="donut_section" class="section-block">
+      <div id="donut_title_area">
+        <h1 class="map-title">iPhone Sales by Region in 2024</h1>
+        <div class="map-subtitle">Share of worldwide iPhone sales by region</div><br>
+      </div>
+      <div id="donut_chart"></div>
+    </div>
+
     <div id="iphone_days_block" class="section-block">
       <h2>How Many Days Of Working To Own An iPhone 17</h2>
       <div id="iphone_days_chart"></div>
@@ -250,6 +262,7 @@
     vegaEmbed('#map', 'idioms/map.vl.json', { actions: false });
     vegaEmbed('#stock_price_chart', 'idioms/stockprice.vl.json', { actions: false });
     vegaEmbed('#apple_revenue_chart', 'idioms/area_stacked_chart.vl.json', { actions: false });
+    vegaEmbed('#donut_chart', 'idioms/donut_chart.vl.json', { actions: false });
     vegaEmbed('#iphone_days_chart', 'idioms/iphone.vl.json', { actions: false });
   </script>
 </body>
