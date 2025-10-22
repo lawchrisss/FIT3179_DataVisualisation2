@@ -16,7 +16,7 @@
     }
   },
   "spec": {
-    "width": 220,
+    "width": 210,
     "height": 200,
     "transform": [
       { "calculate": "format(datum.Sales_Percentage, '.1f') + '%'", "as": "pctLabel" }
