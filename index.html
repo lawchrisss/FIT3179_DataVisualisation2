@@ -71,38 +71,48 @@
     #banner * { position: relative; z-index: 1; }
 
     /* ===== Jobs intro block ===== */
-    #jobs_intro { display: flex; width: 100%; }
+    #jobs_intro {
+      display: flex;
+      align-items: flex-start;
+      width: 100%;
+    }
 
     .jobs-left {
       width: 30%;
       background: #f2f2f2;
       border-radius: 12px;
-      display: flex;
+      display: inline-flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;              /* equal gap on all four sides */
-      box-sizing: border-box;     /* padding stays inside the box */
-    }
-
-    .jobs-photo {
-      width: 100%;                /* fill the frame minus padding */
-      aspect-ratio: 4 / 5;
-      background: url('media/stevejobs_profile.jpg') center/cover no-repeat, #ddd;
-      border-radius: 10px;
-    }                              /* << closed brace fixed */
-
-    .jobs-right {
-      width: 70%;
       padding: 20px;
-      background: #e0e0e0;
-      border-radius: 6px;
-      margin-left: 28px;
       box-sizing: border-box;
     }
 
-    .jobs-text { padding-left: 26px; }
-    .jobs-right p { margin: 0 0 16px; line-height: 1.7; font-family: 'Poppins', sans-serif; font-size: 18px; }
-    @media (max-width: 768px) { .jobs-text { padding-left: 0; margin-top: 20px; } }
+    .jobs-photo {
+      aspect-ratio: 4 / 5;
+      width: 100%;
+      background: url('media/stevejobs_profile.jpg') center/cover no-repeat, #ddd;
+      border-radius: 10px;
+    }
+
+    .jobs-right {
+      width: 70%;
+      padding: 12px 20px 18px;
+      background: #e0e0e0;
+      border-radius: 6px;
+      margin-left: 30px;
+      box-sizing: border-box;
+    }
+
+    .jobs-title {
+      padding-top: 16px;
+      padding-bottom: 0px;
+      margin-bottom: 15px; /* controls gap between title and body text */
+    }
+
+    .jobs-text { padding-left: 30px; padding-top: 0px }
+    .jobs-right p { margin: 0 0 11px; line-height: 1.6; font-family: 'Poppins', sans-serif; font-size: 18px; }
+    @media (max-width: 768px) { .jobs-text { padding-left: 0; margin-top: 0px; } }
 
     .map-title { font-family: 'Apple Garamond', serif; font-weight: 700; font-size: 34px; margin: 0; }
     .map-subtitle { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 1; opacity: 0.95; margin-top: 6px; margin-bottom: 12px; }
