@@ -121,6 +121,9 @@
       .jobs-text { padding-left: 0; margin-top: 16px; }
     }
 
+    /* Map chart title + subtitle styles */
+    .map-title { font-family: 'Apple Garamond', serif; font-weight: 700; font-size: 34px; margin: 0; }
+    .map-subtitle { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 1; opacity: 0.95; margin-top: 6px; }
     /* ====== Map section ====== */
     #choro_frame {
       background-color: #f2f2f2;
@@ -295,8 +298,9 @@
     <div class="pure-g section-block">
       <div class="pure-u-1-1">
         <div id="choro_frame">
-          <div class="description-left">
-            <h2>Global iPhone Market Share</h2>
+          <div class="description-left" id="map_title_area">
+            <h1 class="map-title">The Global Battle Between iPhone and Android</h1>
+            <div class="map-subtitle">Explore how smartphone preferences shift across regions</div>
           </div>
           <div id="map"></div>
         </div>
@@ -306,7 +310,10 @@
     <!-- Stock Price block -->
     <div id="stock_price_block" class="section-block">
       <div id="stock_frame">
-        <h2>Stock Price (2016-2025)</h2>
+        <div id="stock_title_area">
+          <h1 class="map-title">A Decade of Growth: Apple’s Stock Price Evolution</h1>
+          <div class="map-subtitle">How innovation and market sentiment shaped Apple’s stock from 2016–2025</div>
+        </div>
         <div id="stock_price_chart"></div>
       </div>
     </div>
