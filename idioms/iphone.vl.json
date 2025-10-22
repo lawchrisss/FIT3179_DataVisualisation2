@@ -1,10 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
   "background": "#f2f2f2",
-  "autosize": { "type": "fit", "contains": "padding" },
+  "autosize": {"type": "fit", "contains": "padding"},
   "data": {
     "url": "https://raw.githubusercontent.com/lawchrisss/FIT3179_DataVisualisation2/refs/heads/main/datasets/days_to_own.csv",
-    "format": { "type": "csv" }
+    "format": {"type": "csv"}
   },
   "transform": [
     {
@@ -14,59 +14,61 @@
       "calculate": "datum.Country === 'United Arab Emirates' ? 'Emirates' : datum.Country",
       "as": "CountryLabel"
     },
-    { "calculate": "toNumber(datum.Days_Needed)", "as": "days" },
-    { "calculate": "1", "as": "days_per_emoji" },
-    { "calculate": "30", "as": "wrap_per_row" },
-    { "calculate": "ceil(datum.days / datum.days_per_emoji)", "as": "icons" },
-    { "calculate": "sequence(0, datum.icons)", "as": "arr" },
-    { "flatten": ["arr"] },
-    { "calculate": "datum.arr", "as": "i" },
-    { "calculate": "datum.i % datum.wrap_per_row", "as": "col" },
-    { "calculate": "floor(datum.i / datum.wrap_per_row)", "as": "row" }
+    {"calculate": "toNumber(datum.Days_Needed)", "as": "days"},
+    {"calculate": "1", "as": "days_per_emoji"},
+    {"calculate": "40", "as": "wrap_per_row"}, 
+    {"calculate": "ceil(datum.days / datum.days_per_emoji)", "as": "icons"},
+    {"calculate": "sequence(0, datum.icons)", "as": "arr"},
+    {"flatten": ["arr"]},
+    {"calculate": "datum.arr", "as": "i"},
+    {"calculate": "datum.i % datum.wrap_per_row", "as": "col"},
+    {"calculate": "floor(datum.i / datum.wrap_per_row)", "as": "row"}
   ],
   "facet": {
     "row": {
       "field": "CountryLabel",
       "type": "nominal",
-      "sort": { "field": "days", "op": "max", "order": "ascending" },
+      "sort": {"field": "days", "op": "max", "order": "ascending"},
       "header": {
         "title": null,
         "labelAngle": 0,
         "labelAlign": "left",
         "labelPadding": 6,
-        "labelFontSize": 13,
-        "labelFontWeight": "bold"
+        "labelFontSize": 13
       }
     }
   },
   "spec": {
-    "width": 720,
-    "height": 56,
-    "mark": { "type": "text", "baseline": "middle", "align": "center" },
+    "width": 900,
+    "height": 70,
+    "mark": {"type": "text", "baseline": "middle", "align": "center"},
     "encoding": {
       "x": {
         "field": "col",
         "type": "quantitative",
         "axis": null,
-        "scale": { "domain": [-0.5, 29.5] }
+        "scale": {"domain": [-0.5, 40]} 
       },
       "y": {
         "field": "row",
-        "type": "quantitative",
+        "type": "ordinal",
         "axis": null,
         "sort": "descending",
-        "scale": { "padding": 0 }
+        "scale": {
+          "paddingInner": 0,
+          "paddingOuter": 0
+        }
       },
-      "text": { "value": "" },
-      "size": { "value": 26 },
+      "text": {"value": ""},
+      "size": {"value": 26},
       "tooltip": [
-        { "field": "CountryLabel", "title": "Country" },
-        { "field": "days", "title": "Days" }
+        {"field": "CountryLabel", "title": "Country"},
+        {"field": "days", "title": "Days"}
       ]
     }
   },
   "bounds": "flush",
   "padding": 0,
-  "resolve": { "scale": { "y": "independent" } },
-  "config": { "view": { "stroke": null }, "axis": { "grid": false } }
+  "resolve": {"scale": {"y": "independent"}},
+  "config": {"view": {"stroke": null}, "axis": {"grid": false}}
 }
