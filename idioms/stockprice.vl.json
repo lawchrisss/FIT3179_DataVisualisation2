@@ -11,7 +11,7 @@
   ],
   "vconcat": [
     {
-      "width": 800,
+      "width": 750,
       "height": 360,
       "layer": [
         {
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "width": 800,
+      "width": 750,
       "height": 80,
       "title": { "text": "Drag here to filter main chart", "fontSize": 12, "anchor": "middle", "dy": -5 },
       "mark": { "type": "area", "color": "#444444" },
