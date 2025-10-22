@@ -103,12 +103,26 @@
       border-radius: 6px;
     }
 
-    /* Shortened stock frame only */
-    #stock_frame {
-      background-color: #f2f2f2;
+    /* ===== Stock section layout & Insight cards ===== */
+    #stock_price_block { display: flex; width: 100%; }
+    #stock_frame { width: 74%; }
+    .stock-insight { width: 26%; margin-left: 28px; display: flex; flex-direction: column; gap: 20px; }
+    .insight-card {
+      background: #f2f2f2; /* grey same as blocks */
+      border-left: 6px solid #333333; /* dark grey accent bar */
+      border-radius: 12px;
       padding: 20px;
-      border-radius: 6px;
-      width: 74%; /* Makes stock frame shorter */
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .insight-card:hover { transform: translateY(-4px); box-shadow: 0 8px 18px rgba(0,0,0,0.22); }
+    .insight-card h3 { font-family: 'Apple Garamond', serif; font-weight: 700; color: #333; margin: 0 0 8px; font-size: 20px; }
+    .insight-card p { font-family: 'Poppins', sans-serif; font-size: 16px; line-height: 1.6; margin: 0; color: #333; }
+
+    @media (max-width: 900px) {
+      #stock_price_block { display: block; }
+      #stock_frame, .stock-insight { width: 100%; margin-left: 0; }
+      .insight-card { margin-top: 20px; }
     }
 
     /* ===== Global Background ===== */
@@ -232,6 +246,20 @@
           <div class="map-subtitle">How innovation and market sentiment shaped Apple’s stock from 2016–2025</div><br>
         </div>
         <div id="stock_price_chart"></div>
+      </div>
+      <div class="stock-insight">
+        <div class="insight-card" role="note" aria-label="Insight: Momentum with milestones">
+          <h3>Momentum With Milestones</h3>
+          <p>Apple’s share price rose sharply following major events like the <strong>iPhone X launch (2017)</strong> and the <strong>stock split (Aug 2020)</strong>.</p>
+        </div>
+        <div class="insight-card" role="note" aria-label="Insight: Resilience during crises">
+          <h3>Resilience During Crises</h3>
+          <p>Despite the <strong>COVID‑19 shock (Mar 2020)</strong>, Apple recovered quickly, reflecting strong investor confidence in its innovation roadmap.</p>
+        </div>
+        <div class="insight-card" role="note" aria-label="Insight: Silicon era transformation">
+          <h3>Silicon Era Transformation</h3>
+          <p>The shift to <strong>Apple Silicon (M1, 2020)</strong> improved performance and efficiency, fueling sustained stock momentum.</p>
+        </div>
       </div>
     </div>
 
