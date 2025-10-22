@@ -8,7 +8,7 @@
   },
   "transform": [
     {
-      "filter": "indexof(['Switzerland','Singapore','United States','Australia','United Arab Emirates','South Korea','Japan','China','Malaysia','Brazil'], datum.Country) > -1"
+      "filter": "indexof(['Switzerland','Singapore','United States','Australia','United Arab Emirates','South Korea','Japan','China','Malaysia','Brazil', 'India'], datum.Country) > -1"
     },
     {
       "calculate": "datum.Country === 'United Arab Emirates' ? 'Emirates' : datum.Country",
@@ -16,7 +16,7 @@
     },
     {"calculate": "toNumber(datum.Days_Needed)", "as": "days"},
     {"calculate": "1", "as": "days_per_emoji"},
-    {"calculate": "40", "as": "wrap_per_row"}, 
+    {"calculate": "45", "as": "wrap_per_row"}, 
     {"calculate": "ceil(datum.days / datum.days_per_emoji)", "as": "icons"},
     {"calculate": "sequence(0, datum.icons)", "as": "arr"},
     {"flatten": ["arr"]},
