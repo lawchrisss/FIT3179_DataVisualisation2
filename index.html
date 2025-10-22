@@ -15,170 +15,47 @@
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
 
   <style>
-    /* ====== Base & Typography ====== */
     body { background-color: white; margin: 0; position: relative; }
     .page { width: 1200px; margin: auto; padding: 35px 50px 50px; position: relative; z-index: 2; }
 
-    /* Dark overlay for background */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: brightness(0.8);
-      z-index: 1;
-    }
+    body::before { content: ""; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); backdrop-filter: brightness(0.8); z-index: 1; }
 
-    /* Apply Pinyon Script ONLY to Main Title */
-    .apple-title {
-      font-family: 'Apple Garamond', serif;
-      font-size: 64px;
-      font-weight: 400;
-      text-align: center;
-      letter-spacing: 0.5px;
-      margin: 0;
-      text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
-    }
+    .apple-title { font-family: 'Apple Garamond', serif; font-size: 64px; font-weight: 400; text-align: center; letter-spacing: 0.5px; margin: 0; text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25); }
 
-    /* Subtitle (kept if needed later) */
-    #banner-subtitle {
-      font-family: 'Poppins', sans-serif;
-      text-align: center;
-      margin-top: 8px;
-      font-size: 20px;
-      font-weight: 400;
-      opacity: 0.85;
-    }
+    #banner-subtitle { font-family: 'Poppins', sans-serif; text-align: center; margin-top: 8px; font-size: 20px; font-weight: 400; opacity: 0.85; }
 
     h2 { font-family: 'Apple Garamond', serif; font-weight: 700; font-size: 34px; margin-top: 0; }
     .small-font { font-size: 14px; }
 
-    /* Unified vertical rhythm for all blocks */
     .section-block { margin-top: 40px; }
     .pure-g.section-block:first-of-type { margin-top: 20px; }
 
-    /* Inline text accents */
     #small_text { font-size: 12px; }
     .blue_text { color: #DCEEFF; font-weight: bold; text-shadow: 1px 1px 0px black; }
 
-    /* ====== Header Banner ====== */
-    #banner {
-      position: relative;
-      padding: 20px;
-      background: url("media/apple_banner.jpg") center/cover no-repeat;
-      color: white;
-      height: 140px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      border-radius: 6px;
-      text-align: center;
-    }
-    #banner::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: 0;
-    }
+    #banner { position: relative; padding: 20px; background: url("media/apple_banner.jpg") center/cover no-repeat; color: white; height: 140px; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; border-radius: 6px; text-align: center; }
+    #banner::after { content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.6); z-index: 0; }
     #banner * { position: relative; z-index: 1; }
 
-    /* ====== Steve Jobs Intro (image left, text right) ====== */
-    #jobs_intro {
-      display: flex;
-      width: 100%;
-    }
-    .jobs-left {
-      width: 30%;
-      padding: 20px;
-      background: #f2f2f2;
-      border-radius: 6px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .jobs-right {
-      width: 70%;
-      padding: 20px;
-      background: #e0e0e0;
-      border-radius: 6px;
-      margin-left: 28px;
-    }
-    .jobs-photo {
-      width: 100%;
-      aspect-ratio: 4 / 5;
-      background: url('media/stevejobs_profile.jpg') center/cover no-repeat, #ddd;
-      border-radius: 8px;
-    }
-    .jobs-text {
-      padding-left: 24px;
-    }
-    /* paragraph spacing for hierarchy */
-    .jobs-right p { margin: 0 0 16px; line-height: 1.7; font-family: 'Poppins', sans-serif; font-size: 16px;  }
-    @media (max-width: 768px) {
-      .jobs-text { padding-left: 0; margin-top: 16px; }
-    }
+    #jobs_intro { display: flex; width: 100%; }
+    .jobs-left { width: 30%; padding: 20px; background: #f2f2f2; border-radius: 6px; display: flex; justify-content: center; align-items: center; }
+    .jobs-right { width: 70%; padding: 20px; background: #e0e0e0; border-radius: 6px; margin-left: 28px; }
+    .jobs-photo { width: 100%; aspect-ratio: 4 / 5; background: url('media/stevejobs_profile.jpg') center/cover no-repeat, #ddd; border-radius: 8px; }
+    .jobs-text { padding-left: 24px; }
+    .jobs-right p { margin: 0 0 16px; line-height: 1.7; font-family: 'Poppins', sans-serif; font-size: 16px; }
+    @media (max-width: 768px) { .jobs-text { padding-left: 0; margin-top: 16px; } }
 
-    /* Map chart title + subtitle styles */
     .map-title { font-family: 'Apple Garamond', serif; font-weight: 700; font-size: 34px; margin: 0; }
-    .map-subtitle { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 1; opacity: 0.95; margin-top: 6px; }
-    /* ====== Map section ====== */
-    #choro_frame {
-      background-color: #f2f2f2;
-      padding: 20px;
-      border-radius: 6px;
-    }
-    #choro_frame .description-left { padding-right: 20px; }
-    #choro_frame p { margin-right: 650px; }
-    #map { padding-right: 10px; }
+    .map-subtitle { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 1; opacity: 0.95; margin-top: 6px; margin-bottom: 12px; }
 
-    /* ====== Stock price section (grey frame like map) ====== */
-    #stock_frame {
-      background-color: #f2f2f2;
-      padding: 20px;
-      border-radius: 6px;
-    }
+    #choro_frame, #stock_frame { background-color: #f2f2f2; padding: 20px; border-radius: 6px; }
 
-    /* ====== Vega dropdown styling ====== */
-    .vega-bind { font-size: 14px; font-family: 'Poppins', sans-serif; }
+    body { background: url("media/background.jpg") no-repeat center center fixed; background-size: cover; }
 
-    /* ====== Full-page background ====== */
-    body {
-      background: url("media/background.jpg") no-repeat center center fixed;
-      background-size: cover;
-    }
-
-    /* ====== Timeline (Mini Cards 4×2) ====== */
-    .timeline-container {
-      background: #f5f5f5;
-      border-radius: 10px;
-      padding: 40px;
-      margin-top: 40px;
-      margin-bottom: 40px;
-    }
-    .timeline-title {
-      font-family: 'Apple Garamond', serif;
-      text-align: center;
-      margin-top: 0;
-      margin-bottom: 30px;
-      font-weight: 700;
-      font-size: 34px;
-    }
-    .timeline-grid.fixed-four {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 30px;
-    }
-    .card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-      padding: 20px;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+    .timeline-container { background: #f5f5f5; border-radius: 10px; padding: 40px; margin-top: 40px; margin-bottom: 40px; }
+    .timeline-title { font-family: 'Apple Garamond', serif; text-align: center; margin-top: 0; margin-bottom: 30px; font-weight: 700; font-size: 34px; }
+    .timeline-grid.fixed-four { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+    .card { background: white; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); padding: 20px; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease; }
     .card:hover { transform: translateY(-6px); box-shadow: 0 6px 12px rgba(0,0,0,0.25); }
     .card h3 { font-family: 'Apple Garamond', serif; color: #9B2226; margin-bottom: 10px; font-weight: 600; }
     .card p { font-family: 'Poppins', sans-serif; font-size: 16px; color: #333; line-height: 1.4; }
@@ -186,36 +63,13 @@
     @media (max-width: 900px) { .timeline-grid.fixed-four { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 560px) { .timeline-grid.fixed-four { grid-template-columns: 1fr; } }
 
-    /* ====== Revenue section ====== */
     #revenue_section { display: flex; width: 100%; }
-    .revenue-left {
-      width: 70%;
-      padding: 20px;
-      background: #f2f2f2;
-      border-radius: 6px;
-    }
-    .revenue-right {
-      width: 30%;
-      padding: 20px;
-      background: #e0e0e0;
-      border-radius: 6px;
-      margin-left: 28px;
-    }
+    .revenue-left { width: 70%; padding: 20px; background: #f2f2f2; border-radius: 6px; }
+    .revenue-right { width: 30%; padding: 20px; background: #e0e0e0; border-radius: 6px; margin-left: 28px; }
 
-    /* ====== iPhone days block ====== */
     #iphone_days_block { background: #f2f2f2; padding: 20px; border-radius: 6px; }
 
-    /* ====== Footer ====== */
-    #footer_credit {
-      position: relative;
-      padding: 20px;
-      font-size: 14px;
-      color: white;
-      text-align: left;
-      border-radius: 6px;
-      overflow: hidden;
-      background: url("media/footer.jpg") center/cover no-repeat;
-    }
+    #footer_credit { position: relative; padding: 20px; font-size: 14px; color: white; text-align: left; border-radius: 6px; overflow: hidden; background: url("media/footer.jpg") center/cover no-repeat; }
     #footer_credit::after { content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.45); z-index: 0; }
     #footer_credit * { position: relative; z-index: 1; }
   </style>
@@ -223,107 +77,62 @@
 </head>
 <body>
   <div class="page">
-    <!-- Header -->
     <div class="pure-g" id="banner">
       <div class="pure-u-1-1">
         <h1 class="apple-title">All About Apple.</h1>
       </div>
     </div>
 
-    <!-- Steve Jobs Intro (image left, text right) -->
     <div id="jobs_intro" class="section-block">
-      <div class="jobs-left">
-        <div class="jobs-photo" aria-label="Steve Jobs image"></div>
-      </div>
+      <div class="jobs-left"><div class="jobs-photo" aria-label="Steve Jobs image"></div></div>
       <div class="jobs-right jobs-text">
         <h2>Steve Jobs &amp; The Apple Story</h2>
-        <p>
-  <strong>Steve Jobs</strong>, co-founder of <strong>Apple</strong>, believed that technology<br>
-  should be <strong>intuitive</strong>, <strong>beautifully designed</strong>, and <strong>seamlessly</strong><br>
-  integrated into everyday life. What started as a small garage<br>
-  project in 1976 grew into a <strong>global technology leader</strong> under<br>
-  his vision.
-</p>
-        <p>
-  Apple became more than a company. It established itself as a<br>
-  main driver of innovation, influencing how the world<br>
-  communicates, listens to music, makes payments, and interacts<br>
-  with digital products. Its <strong>design philosophy</strong> and <strong>ecosystem</strong><br>
-  approach set new standards and created a lasting impact on<br>
-  modern technology and culture.
-</p>
+        <p><strong>Steve Jobs</strong>, co-founder of <strong>Apple</strong>, believed that technology should be <strong>intuitive</strong>, <strong>beautifully designed</strong>, and <strong>seamlessly</strong> integrated into everyday life. What started as a small garage project in 1976 grew into a <strong>global technology leader</strong> under his vision.</p>
+        <p>Apple became more than a company. It established itself as a main driver of innovation, influencing how the world communicates, listens to music, makes payments, and interacts with digital products. Its <strong>design philosophy</strong> and <strong>ecosystem</strong> approach set new standards and created a lasting impact on modern technology and culture.</p>
       </div>
     </div>
 
-    <!-- Timeline Mini Cards (4 per row, 2 rows) -->
     <div class="timeline-container section-block">
       <h2 class="timeline-title">Major Apple Innovations</h2>
       <div class="timeline-grid fixed-four">
-        <div class="card">
-          <h3>1976</h3>
-          <p><strong>Apple I</strong> released — the first computer built by Steve Jobs and Steve Wozniak in a garage.</p>
-        </div>
-        <div class="card">
-          <h3>1984</h3>
-          <p>Launch of <strong>Macintosh</strong> — introducing the graphical user interface to personal computing.</p>
-        </div>
-        <div class="card">
-          <h3>1997</h3>
-          <p><strong>Steve Jobs returns</strong> — strategic reset and the beginning of Apple's modern era.</p>
-        </div>
-        <div class="card">
-          <h3>2001</h3>
-          <p><strong>iPod</strong> revolutionizes music consumption worldwide.</p>
-        </div>
-        <div class="card">
-          <h3>2007</h3>
-          <p><strong>iPhone</strong> changes how humans interact with technology forever.</p>
-        </div>
-        <div class="card">
-          <h3>2010</h3>
-          <p><strong>iPad</strong> launches — creating a new device category between laptops and phones.</p>
-        </div>
-        <div class="card">
-          <h3>2015</h3>
-          <p><strong>Apple Watch</strong> introduces wearable tech to the mainstream market.</p>
-        </div>
-        <div class="card">
-          <h3>2020</h3>
-          <p><strong>Apple Silicon (M1)</strong> transforms computing efficiency and performance.</p>
-        </div>
+        <div class="card"><h3>1976</h3><p><strong>Apple I</strong> released — the first computer built by Steve Jobs and Steve Wozniak in a garage.</p></div>
+        <div class="card"><h3>1984</h3><p>Launch of <strong>Macintosh</strong> — introducing the graphical user interface to personal computing.</p></div>
+        <div class="card"><h3>1997</h3><p><strong>Steve Jobs returns</strong> — strategic reset and the beginning of Apple's modern era.</p></div>
+        <div class="card"><h3>2001</h3><p><strong>iPod</strong> revolutionizes music consumption worldwide.</p></div>
+        <div class="card"><h3>2007</h3><p><strong>iPhone</strong> changes how humans interact with technology forever.</p></div>
+        <div class="card"><h3>2010</h3><p><strong>iPad</strong> launches — creating a new device category between laptops and phones.</p></div>
+        <div class="card"><h3>2015</h3><p><strong>Apple Watch</strong> introduces wearable tech to the mainstream market.</p></div>
+        <div class="card"><h3>2020</h3><p><strong>Apple Silicon (M1)</strong> transforms computing efficiency and performance.</p></div>
       </div>
     </div>
 
-    <!-- Map block -->
     <div class="pure-g section-block">
       <div class="pure-u-1-1">
         <div id="choro_frame">
           <div class="description-left" id="map_title_area">
             <h1 class="map-title">The Global Battle Between iPhone and Android</h1>
-            <div class="map-subtitle">Explore how smartphone preferences shift across regions</div>
+            <div class="map-subtitle">Explore how smartphone preferences shift across regions</div><br>
           </div>
           <div id="map"></div>
         </div>
       </div>
     </div>
 
-    <!-- Stock Price block -->
     <div id="stock_price_block" class="section-block">
       <div id="stock_frame">
         <div id="stock_title_area">
           <h1 class="map-title">A Decade of Growth: Apple’s Stock Price Evolution</h1>
-          <div class="map-subtitle">How innovation and market sentiment shaped Apple’s stock from 2016–2025</div>
+          <div class="map-subtitle">How innovation and market sentiment shaped Apple’s stock from 2016–2025</div><br>
         </div>
         <div id="stock_price_chart"></div>
       </div>
     </div>
 
-    <!-- Revenue section -->
     <div id="revenue_section" class="section-block">
       <div class="revenue-left">
         <div id="revenue_title_area">
           <h1 class="map-title">Apple’s Growth Blueprint</h1>
-          <div class="map-subtitle">A visual breakdown of where innovation turns into revenue</div>
+          <div class="map-subtitle">A visual breakdown of where innovation turns into revenue</div><br>
         </div>
         <div id="apple_revenue_chart"></div>
       </div>
@@ -332,24 +141,17 @@
       </div>
     </div>
 
-    <!-- iPhone Days Emoji Chart -->
     <div id="iphone_days_block" class="section-block">
       <h2>How Many Days Of Working To Own An iPhone 17</h2>
       <div id="iphone_days_chart"></div>
-      <h3 class="small-font" style="margin-top: 15px; opacity: 0.85;">
-        Insights..........................<br>Insights..........................<br>Insights..........................
-      </h3>
+      <h3 class="small-font" style="margin-top: 15px; opacity: 0.85;">Insights..........................<br>Insights..........................<br>Insights..........................</h3>
     </div>
 
-    <!-- Footer -->
     <div id="footer_credit" class="section-block">
-      This visualisation is created by Chris Law Zi Qing<br>
-      Published on 16th October 2025<br>
-      Data Source: Company X, Company Y
+      This visualisation is created by Chris Law Zi Qing<br>Published on 16th October 2025<br>Data Source: Company X, Company Y
     </div>
   </div>
 
-  <!-- JS -->
   <script>
     vegaEmbed('#map', 'idioms/map.vl.json', { actions: false });
     vegaEmbed('#stock_price_chart', 'idioms/stockprice.vl.json', { actions: false });
