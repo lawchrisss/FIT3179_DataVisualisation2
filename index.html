@@ -131,6 +131,13 @@
     #choro_frame p { margin-right: 650px; }
     #map { padding-right: 10px; }
 
+    /* ====== Stock price section (grey frame like map) ====== */
+    #stock_frame {
+      background-color: #f2f2f2;
+      padding: 20px;
+      border-radius: 6px;
+    }
+
     /* ====== Vega dropdown styling ====== */
     .vega-bind { font-size: 14px; font-family: 'Poppins', sans-serif; }
 
@@ -295,7 +302,15 @@
         </div>
       </div>
     </div>
-    
+
+    <!-- Stock Price block -->
+    <div id="stock_price_block" class="section-block">
+      <div id="stock_frame">
+        <h2>Stock Price (2016-2025)</h2>
+        <div id="stock_price_chart"></div>
+      </div>
+    </div>
+
     <!-- Revenue section -->
     <div id="revenue_section" class="section-block">
       <div class="revenue-left">
@@ -327,6 +342,7 @@
   <!-- JS -->
   <script>
     vegaEmbed('#map', 'idioms/map.vl.json', { actions: false });
+    vegaEmbed('#stock_price_chart', 'idioms/stockprice.vl.json', { actions: false });
     vegaEmbed('#apple_revenue_chart', 'idioms/area_stacked_chart.vl.json', { actions: false });
     vegaEmbed('#iphone_days_chart', 'idioms/iphone.vl.json', { actions: false });
   </script>
