@@ -27,10 +27,7 @@
   <style>
     /* ---------------------------------------------------------------------------------
      * GLOBAL BASE
-     * ---------------------------------------------------------------------------------
-     * - Keep body background image + dim overlay (via body::before in-page layer)
-     * - .page acts as a centered max-width container for all content blocks
-     */
+     * --------------------------------------------------------------------------------- */
     body {
       background-color: white; /* fallback behind background image */
       margin: 0;
@@ -83,10 +80,7 @@
 
     /* ---------------------------------------------------------------------------------
      * [BANNER] Top hero banner
-     * ---------------------------------------------------------------------------------
-     * - Background image with semi-opaque overlay for text contrast
-     * - Centered title stack
-     */
+     * --------------------------------------------------------------------------------- */
     #banner {
       position: relative;
       padding: 20px;
@@ -258,8 +252,8 @@
     #footer_credit {
       position: relative;
       padding: 20px;
-      font-size: 18px;              /* ↑ bigger text for readability */
-      line-height: 1.6;             /* ↑ breathing room */
+      font-size: 18px;              /* bigger text for readability */
+      line-height: 1.6;             /* breathing room */
       color: #ffffff;               /* white text */
       text-align: left;
       border-radius: 6px;
@@ -274,11 +268,8 @@
       background: rgba(0, 0, 0, 0.55);  /* slightly darker overlay for visibility */
       z-index: 0;
     }
-    #footer_credit * {
-      position: relative;
-      z-index: 1;
-    }
-    
+    #footer_credit * { position: relative; z-index: 1; }
+
     /* Footer links: white + underline (no blue) */
     #footer_credit a,
     #footer_credit a:visited {
@@ -291,13 +282,13 @@
       text-decoration: underline;
       opacity: 0.9;                 /* gentle hover feedback */
     }
+  </style>
+</head>
 
+<body>
+  <div class="page">
 
-    <!-- =================================================================================
-         [BANNER] Hero header
-         - Edit title text inside <h1> below.
-         - Background image: /media/apple_banner.jpg (see #banner in CSS).
-    ================================================================================== -->
+    <!-- [BANNER] Hero header -->
     <div class="pure-g" id="banner">
       <div class="pure-u-1-1">
         <h1 class="apple-title">All About Apple.</h1>
@@ -307,11 +298,7 @@
       </div>
     </div>
 
-    <!-- =================================================================================
-         [JOBS] Steve Jobs intro (2-column: portrait + narrative)
-         - Left: .jobs-left contains .jobs-photo (image path in CSS)
-         - Right: .jobs-right holds the narrative paragraphs
-    ================================================================================== -->
+    <!-- [JOBS] Steve Jobs intro -->
     <div id="jobs_intro" class="section-block">
       <div class="jobs-left">
         <div class="jobs-photo" aria-label="Steve Jobs image"></div>
@@ -323,10 +310,7 @@
       </div>
     </div>
 
-    <!-- =================================================================================
-         [TIMELINE] Innovations grid (editable copy)
-         - To add a new milestone: duplicate a .card block and change year/text
-    ================================================================================== -->
+    <!-- [TIMELINE] Innovations grid -->
     <div class="timeline-container section-block">
       <h2 class="timeline-title">Major Apple Innovations</h2>
       <div class="timeline-grid fixed-four">
@@ -341,11 +325,7 @@
       </div>
     </div>
 
-    <!-- =================================================================================
-         [MAP] Choropleth map: title + subtitle + body text + chart mount (#map)
-         - To change copy: edit .map-title/.map-subtitle/.map-body below
-         - To modify the chart: update idioms/map.vl.json file
-    ================================================================================== -->
+    <!-- [MAP] Choropleth map -->
     <div class="pure-g section-block">
       <div class="pure-u-1-1">
         <div id="choro_frame">
@@ -365,11 +345,7 @@
       </div>
     </div>
 
-    <!-- =================================================================================
-         [STOCK] Left: stock price chart mount (#stock_price_chart)
-                 Right: 3 insight cards (semantic <aside>-like role via role="note")
-         - Adjust column ratio in #stock_price_block grid-template-columns (CSS)
-    ================================================================================== -->
+    <!-- [STOCK] Chart + insights -->
     <div id="stock_price_block" class="section-block">
       <div id="stock_frame">
         <div id="stock_title_area">
@@ -394,11 +370,7 @@
       </div>
     </div>
 
-    <!-- =================================================================================
-         [REVENUE] Left stacked-area chart + right insight list
-         - Chart mount target: #apple_revenue_chart
-         - RHS insights: <li>.insight-item blocks
-    ================================================================================== -->
+    <!-- [REVENUE] Chart + insight list -->
     <div id="revenue_section" class="section-block">
       <div class="revenue-left">
         <div id="revenue_title_area">
@@ -408,7 +380,6 @@
         <div id="apple_revenue_chart"></div>
       </div>
 
-      <!-- Reworked insights panel (Right) -->
       <div class="revenue-right">
         <ul class="insight-list">
           <li class="insight-item">
@@ -435,10 +406,7 @@
       </div>
     </div>
 
-    <!-- =================================================================================
-         [DONUT] Regional share donut chart
-         - Chart mount target: #donut_chart
-    ================================================================================== -->
+    <!-- [DONUT] Regional share donut chart -->
     <div id="donut_section" class="section-block">
       <div id="donut_title_area">
         <h1 class="map-title">iPhone’s Global Footprint, 2024</h1>
@@ -447,10 +415,7 @@
       <div id="donut_chart"></div>
     </div>
 
-    <!-- =================================================================================
-         [IPHONE] Days-to-afford iPhone chart + 3 insight cards grid
-         - Chart mount target: #iphone_days_chart
-    ================================================================================== -->
+    <!-- [IPHONE] Days-to-afford chart -->
     <div id="iphone_days_block" class="section-block">
       <div id="iphone_title_area">
         <h1 class="map-title">How Many Days Of Working To Own An iPhone 17</h1>
@@ -459,7 +424,7 @@
       <div id="iphone_days_chart"></div>
     </div>
 
-    <!-- Insights row beneath the iPhone chart -->
+    <!-- Insights beneath the iPhone chart -->
     <div id="iphone_insights_section" class="section-block">
       <div class="iphone-insight-card">
         <h3>Biggest Gap</h3>
@@ -475,10 +440,7 @@
       </div>
     </div>
 
-    <!-- =================================================================================
-         [FOOTER] Credits (background image with overlay)
-         - Edit text inside this container; see #footer_credit CSS for image path
-    ================================================================================== -->
+    <!-- [FOOTER] Credits -->
     <div id="footer_credit" class="section-block">
       This visualisation is created by Chris Law Zi Qing<br>
       Published on 16th October 2025<br>
@@ -492,9 +454,6 @@
 
   <!-- =============================================================================== -->
   <!-- [EMBED] Chart bootstrapping via Vega-Embed                                      -->
-  <!-- - Update file paths in the second argument to point to your Vega-Lite specs.    -->
-  <!-- - Set { actions: true } to enable the built-in export menu for each chart.      -->
-  <!-- - Keep IDs in sync with the chart mount points defined in the DOM above.        -->
   <!-- =============================================================================== -->
   <script>
     // [MAP] Choropleth
