@@ -258,20 +258,40 @@
     #footer_credit {
       position: relative;
       padding: 20px;
-      font-size: 14px;
-      color: white;
+      font-size: 18px;              /* ↑ bigger text for readability */
+      line-height: 1.6;             /* ↑ breathing room */
+      color: #ffffff;               /* white text */
       text-align: left;
       border-radius: 6px;
       overflow: hidden;
       background: url("media/footer.jpg") center/cover no-repeat;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.6);  /* subtle glow for contrast */
     }
-    #footer_credit::after { content: ""; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.45); z-index: 0; }
-    #footer_credit * { position: relative; z-index: 1; }
-  </style>
-</head>
+    #footer_credit::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);  /* slightly darker overlay for visibility */
+      z-index: 0;
+    }
+    #footer_credit * {
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* Footer links: white + underline (no blue) */
+    #footer_credit a,
+    #footer_credit a:visited {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+    #footer_credit a:hover,
+    #footer_credit a:focus {
+      color: #ffffff;
+      text-decoration: underline;
+      opacity: 0.9;                 /* gentle hover feedback */
+    }
 
-<body>
-  <div class="page">
 
     <!-- =================================================================================
          [BANNER] Hero header
