@@ -204,6 +204,43 @@
 
     #iphone_days_block { background: #f2f2f2; padding: 20px; border-radius: 6px; }
 
+    /* === iPhone Days Insights (outside the chart) === */
+    #iphone_insights_section {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .iphone-insight-card {
+      background: #fafafa;
+      border-left: 6px solid #d3d3d3; /* grey border */
+      border-radius: 10px;
+      padding: 22px 24px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .iphone-insight-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+    }
+    .iphone-insight-card h3 {
+      font-family: 'Apple Garamond', serif;
+      font-weight: 700;
+      font-size: 20px;
+      margin: 0 0 8px;
+      color: #000;
+    }
+    .iphone-insight-card p {
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      line-height: 1.55;
+      margin: 0;
+      color: #333;
+    }
+    @media (max-width: 900px) {
+      #iphone_insights_section { grid-template-columns: 1fr; }
+    }
+
     #footer_credit {
       position: relative;
       padding: 20px;
@@ -348,6 +385,22 @@
         <div class="map-subtitle">1 Emoji = 1 Day of working</div>
       </div>
       <div id="iphone_days_chart"></div>
+    </div>
+
+    <!-- NEW: Insights outside the chart, side by side -->
+    <div id="iphone_insights_section" class="section-block">
+      <div class="iphone-insight-card">
+        <h3>Biggest Gap</h3>
+        <p><strong>Switzerland ≈ 4 days</strong> vs <strong>Brazil ≈ 80+ days</strong> shows about a <strong>20×</strong> difference for the same phone.</p>
+      </div>
+      <div class="iphone-insight-card">
+        <h3>Local Lens</h3>
+        <p><strong>Malaysia</strong> needs about <strong>10×</strong> longer than Switzerland, highlighting purchasing power gaps.</p>
+      </div>
+      <div class="iphone-insight-card">
+        <h3>Rule of Thumb</h3>
+        <p>The rough <strong>global “average” ≈ 30 days</strong>. Countries above this line feel the iPhone as a luxury buy.</p>
+      </div>
     </div>
 
     <div id="footer_credit" class="section-block">
