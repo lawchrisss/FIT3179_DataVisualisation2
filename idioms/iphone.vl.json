@@ -33,7 +33,7 @@
         "title": null,
         "labelAngle": 0,
         "labelAlign": "left",
-        "labelPadding": 15,
+        "labelPadding": 10,
         "labelFontSize": 15,
         "labelFontWeight": "bold"
       }
