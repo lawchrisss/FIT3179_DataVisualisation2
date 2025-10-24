@@ -29,18 +29,18 @@
      * GLOBAL BASE
      * --------------------------------------------------------------------------------- */
     body {
-      background-color: white; /* fallback behind background image */
+      background-color: white; 
       margin: 0;
       position: relative;
       background: url("media/background.jpg") no-repeat center center fixed;
       background-size: cover;
     }
     .page {
-      width: 1200px;           /* main content width */
-      margin: auto;            /* center horizontally */
-      padding: 35px 50px 50px; /* outer whitespace */
+      width: 1200px;           
+      margin: auto;            
+      padding: 35px 50px 50px; 
       position: relative;
-      z-index: 2;              /* ensure content above body::before overlay */
+      z-index: 2;             
     }
     /* Global darken overlay to improve foreground readability */
     body::before {
@@ -49,7 +49,7 @@
       inset: 0;
       background: rgba(0, 0, 0, 0.5);
       backdrop-filter: brightness(0.8);
-      z-index: 1; /* sits behind .page (z-index: 2) */
+      z-index: 1; 
     }
 
     /* Typography helpers */
@@ -99,7 +99,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.6); /* inner banner darkener */
+      background: rgba(0, 0, 0, 0.6); 
       z-index: 0;
     }
     #banner * { position: relative; z-index: 1; }
@@ -166,7 +166,7 @@
      * --------------------------------------------------------------------------------- */
     #stock_price_block {
       display: grid;
-      grid-template-columns: 1fr 21%; /* main chart | insights column */
+      grid-template-columns: 1fr 21%; 
       column-gap: 28px;
       align-items: stretch;
       width: 100%;
@@ -183,7 +183,7 @@
     }
     .insight-card {
       background: #f2f2f2;
-      border-left: 6px solid #D3D3D3; /* accent edge */
+      border-left: 6px solid #D3D3D3; 
       border-radius: 12px;
       padding: 20px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.12);
@@ -460,7 +460,7 @@
       <a href="https://finance.yahoo.com/quote/AAPL/" target="_blank" rel="noopener">Yahoo Finance</a>
     </div>
 
-  </div> <!-- /.page -->
+  </div> 
 
   <!-- =============================================================================== -->
   <!-- [EMBED] Chart bootstrapping via Vega-Embed                                      -->
