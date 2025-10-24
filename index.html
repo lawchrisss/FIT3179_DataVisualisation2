@@ -111,14 +111,40 @@
     /* ---------------------------------------------------------------------------------
      * [JOBS] Steve Jobs split layout (left photo / right text)
      * --------------------------------------------------------------------------------- */
-    #jobs_intro { display: flex; width: 100%; }
-    .jobs-left { width: 30%; padding: 20px; background: #f2f2f2; border-radius: 6px; display: flex; justify-content: center; align-items: center; }
-    .jobs-right { width: 70%; padding: 20px; background: #e0e0e0; border-radius: 6px; margin-left: 28px; }
-    .jobs-photo { width: 100%; aspect-ratio: 4 / 5; background: url('media/stevejobs_profile.jpg') center/cover no-repeat, #ddd; border-radius: 8px; }
-    .jobs-text { padding-left: 24px; }
-    .jobs-right p { margin: 0 0 16px; line-height: 1.7; font-family: 'Poppins', sans-serif; font-size: 16px; }
-    @media (max-width: 768px) { .jobs-text { padding-left: 0; margin-top: 16px; } }
+    #jobs_intro { display: flex; align-items: flex-start; width: 100%; }
 
+    .jobs-left {
+      width: 30%;
+      background: #f2f2f2;
+      border-radius: 12px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .jobs-photo {
+      aspect-ratio: 4 / 5;
+      width: 100%;
+      background: url('media/stevejobs_profile.jpg') center/cover no-repeat, #ddd;
+      border-radius: 10px;
+    }
+    .jobs-right {
+      width: 70%;
+      padding: 30px 20px 5px;
+      background: #e0e0e0;
+      border-radius: 10px;
+      margin-left: 30px;
+      box-sizing: border-box;
+    }
+    .jobs-title { padding-top: 24px; margin-bottom: 15px; }
+    .jobs-text { padding-left: 30px; padding-top: 0px; }
+    .jobs-right p {
+      margin: 0 0 11px;
+      line-height: 1.6;
+      font-family: 'Poppins', sans-serif;
+      font-size: 18.5px;
+    }
     @media (max-width: 768px) { .jobs-text { padding-left: 0; margin-top: 0; } }
 
     /* ---------------------------------------------------------------------------------
