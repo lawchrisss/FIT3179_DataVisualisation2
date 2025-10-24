@@ -131,22 +131,25 @@
     }
     .jobs-right {
       width: 70%;
-      padding: 25px 40px; /* symmetrical padding */
+      padding: 30px 20px 5px;
       background: #e0e0e0;
       border-radius: 10px;
-      margin-left: auto;  /* centers horizontally */
-      margin-right: auto; /* centers horizontally */
+      margin-left: 30px;
       box-sizing: border-box;
-      text-align: center;
     }
-    .jobs-title { padding-top: 24px; margin-bottom: 15px; }
-    .jobs-text { padding-left: 30px; padding-top: 0px; }
+    
+    /* Only this line controls the paragraph alignment */
     .jobs-right p {
-      margin: 0 0 11px;
+      text-align: justify;        /* makes the text fill neatly from left to right */
+      text-justify: inter-word;   /* ensures even spacing between words */
       line-height: 1.6;
       font-family: 'Poppins', sans-serif;
       font-size: 18.5px;
     }
+
+    .jobs-title { padding-top: 24px; margin-bottom: 15px; }
+    .jobs-text { padding-left: 30px; padding-top: 0px; }
+
     @media (max-width: 768px) { .jobs-text { padding-left: 0; margin-top: 0; } }
 
     /* ---------------------------------------------------------------------------------
