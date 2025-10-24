@@ -229,14 +229,25 @@
      * --------------------------------------------------------------------------------- */
     #donut_section { background: #f2f2f2; padding: 20px; border-radius: 6px; }
 
+    /* Horizontal layout for the donut insights row */
+    #donut_insights_section {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 900px) {
+      #donut_insights_section { grid-template-columns: 1fr; }
+    }
+
     /* ---------------------------------------------------------------------------------
      * [IPHONE] isotype dot plot container edits
      * --------------------------------------------------------------------------------- */
     #iphone_days_block { background: #f2f2f2; padding: 20px; border-radius: 6px; }
 
-    /* Insights row beneath the chart */
+    /* Insights row beneath the iPhone chart */
     #iphone_insights_section { margin-top: 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .iphone-insight-card { background: #fafafa; border-left: 6px solid #d3d3d3; border-radius: 10px; padding: 22px 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .iphone-insight-card { background: #fafafa; border-left: 6px solid #d3d3d3; border-radius: 10px; padding: 22px 24px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); transition: transform 0.25s ease, box-shadow 0.25s ease; }
     .iphone-insight-card:hover { transform: translateY(-4px); box-shadow: 0 6px 14px rgba(0,0,0,0.18); }
     .iphone-insight-card h3 { font-family: 'Apple Garamond', serif; font-weight: 700; font-size: 20px; margin: 0 0 8px; color: #000; }
     .iphone-insight-card p  { font-family: 'Poppins', sans-serif; font-size: 15px; line-height: 1.55; margin: 0; color: #333; }
@@ -274,6 +285,17 @@
       position: relative;
       z-index: 1;
       color: #ffffff;
+    }
+
+    /* Footer quote style */
+    .footer-quote {
+      font-family: 'Apple Garamond', serif;
+      font-size: 30px;
+      font-weight: 400;
+      margin: 0 0 15px;
+      color: #ffffff;
+      text-align: center;
+      letter-spacing: 0.5px;
     }
     
     /* bold, underlined white links (footer only) */
@@ -419,18 +441,19 @@
       <div id="donut_chart"></div>
     </div>
 
-    <div id="iphone_insights_section" class="section-block">
+    <!-- Donut insights row (now horizontal) -->
+    <div id="donut_insights_section" class="section-block">
       <div class="iphone-insight-card">
         <h3>Market Dominance.</h3>
-        <p><strong>The Americas</strong> lead with <strong>43.3 %</strong> of Apple’s total iPhone sales, confirming the region as Apple’s <strong>strongest and most loyal market.</strong></p>
+        <p><strong>The Americas</strong> lead with <strong>43.3%</strong> of Apple’s total iPhone sales, confirming the region as Apple’s <strong>strongest and most loyal market.</strong></p>
       </div>
       <div class="iphone-insight-card">
         <h3>European Stability.</h3>
-        <p><strong>Europe</strong> contributes <strong>25.4 %,</strong> maintaining a <strong>solid share</strong> that reflects consistent demand in mature economies despite <strong>slower population growth.</strong></p>
+        <p><strong>Europe</strong> contributes <strong>25.4%</strong>, maintaining a <strong>solid share</strong> that reflects consistent demand in mature economies despite <strong>slower population growth.</strong></p>
       </div>
       <div class="iphone-insight-card">
         <h3>Asian Growth Divide.</h3>
-        <p><strong>China</strong> holds <strong>16.6 %</strong> while <strong>Japan</strong> and the rest of <strong>Asia-Pacific</strong> together account for about <strong>15 %,</strong> showing Asia’s <strong>mixed growth. <strong>China remains vital, but emerging Asian markets still lag behind.</strong>></p>
+        <p><strong>China</strong> holds <strong>16.6%</strong> while <strong>Japan</strong> and the rest of <strong>Asia-Pacific</strong> together account for about <strong>15%</strong>, showing Asia’s mixed growth. <strong>China remains vital, but emerging Asian markets still lag behind.</strong></p>
       </div>
     </div>
 
@@ -461,6 +484,7 @@
 
     <!-- [FOOTER] Credits -->
     <div id="footer_credit" class="section-block">
+      <h2 class="footer-quote">Think Different. - Steve Jobs</h2>
       <p>This visualization was created by <strong>Chris Law Zi Qing</strong></p>
       <p>Published on 16th October 2025</p>
       <p>
