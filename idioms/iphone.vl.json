@@ -48,7 +48,7 @@
         "field": "col",
         "type": "quantitative",
         "axis": null,
-        "scale": {"domain": [-0.5, 39]}
+        "scale": {"domain": [-0.5, 40]}
       },
       "y": {
         "field": "row",
@@ -58,7 +58,7 @@
         "scale": {"paddingInner": 0, "paddingOuter": 0}
       },
       "text": {"value": ""},
-      "size": {"value": 32},
+      "size": {"value": 31},
       "color": {
         "condition": [
           {"test": "datum.CountryLabel === 'Switzerland'", "value": "#FFD700"},
