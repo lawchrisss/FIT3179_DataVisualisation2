@@ -249,42 +249,42 @@
     /* ---------------------------------------------------------------------------------
      * [FOOTER] Credits block with background image + overlay
      * --------------------------------------------------------------------------------- */
-    /* Footer: force all-white text */
     #footer_credit {
-    background: url("media/footer.jpg") center/cover no-repeat; /* background image */
-    position: relative;                /* required for overlay (::after) */
-    color: #ffffff;                    /* white text */
-    font-family: 'Poppins', sans-serif;/* font */
-    font-size: 16px;                   /* text size */
-    font-weight: 400;                  /* normal weight */
-    line-height: 1.6;                  /* spacing between lines */
-    text-align: left;                  /* left-aligned */
-    padding: 25px 20px;                /* inner spacing */
-    border-radius: 6px;                /* rounded corners */
-    margin-top: 40px;                  /* spacing above footer */
-    overflow: hidden;                  /* ensures overlay stays inside */
-  }
-  
-  /* overlay layer for contrast */
-  #footer_credit::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.55);   /* dark overlay */
-    z-index: 0;
-  }
-  
-  /* make sure text appears above overlay */
-  #footer_credit * {
-    position: relative;
-    z-index: 1;
-  }
-  
-  /* underline and white links */
-  #footer_credit a {
-    color: #ffffff;
-    text-decoration: underline;
-  }
+      background: url("media/footer.jpg") center/cover no-repeat;
+      position: relative;              /* required for overlay positioning */
+      color: #ffffff;                  /* white text */
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.6;
+      text-align: left;                /* left aligned text */
+      padding: 25px 25px;
+      border-radius: 6px;
+      margin-top: 40px;
+      overflow: hidden;                /* keeps overlay contained */
+    }
+    
+    /* dark overlay for better text contrast */
+    #footer_credit::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55); /* semi-transparent dark layer */
+      z-index: 0;
+    }
+    
+    /* keep all footer text above overlay */
+    #footer_credit * {
+      position: relative;
+      z-index: 1;
+      color: #ffffff; /* ensures all text stays white */
+    }
+    
+    /* white, underlined links */
+    #footer_credit a {
+      color: #ffffff;
+      text-decoration: underline;
+    }
 
   </style>
 </head>
@@ -446,14 +446,16 @@
 
     <!-- [FOOTER] Credits -->
     <div id="footer_credit" class="section-block">
-      This visualisation is created by Chris Law Zi Qing<br>
-      Published on 16th October 2025<br>
-      Data Source:
-      <a href="https://www.businessofapps.com/data/apple-statistics/" target="_blank" rel="noopener">Business of Apps</a>,
-      <a href="https://worldpopulationreview.com/country-rankings/iphone-market-share-by-country" target="_blank" rel="noopener">World Population Review</a>,
-      <a href="https://finance.yahoo.com/quote/AAPL/" target="_blank" rel="noopener">Yahoo Finance</a>
+      <p>This visualization was created by <strong>Chris Law Zi Qing</strong></p>
+      <p>Published on 16th October 2025</p>
+      <p>
+        Data Sources:
+        <a href="https://www.businessofapps.com/data/apple-statistics/" target="_blank" rel="noopener">Business of Apps</a>,
+        <a href="https://worldpopulationreview.com/country-rankings/iphone-market-share-by-country" target="_blank" rel="noopener">World Population Review</a>,
+        <a href="https://finance.yahoo.com/quote/AAPL/" target="_blank" rel="noopener">Yahoo Finance</a>
+      </p>
     </div>
-
+    
   </div> 
 
   <!-- =============================================================================== -->
