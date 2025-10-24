@@ -16,7 +16,7 @@
     },
     {"calculate": "toNumber(datum.Days_Needed)", "as": "days"},
     {"calculate": "1", "as": "days_per_emoji"},
-    {"calculate": "45", "as": "wrap_per_row"},
+    {"calculate": "44", "as": "wrap_per_row"},
     {"calculate": "ceil(datum.days / datum.days_per_emoji)", "as": "icons"},
     {"calculate": "sequence(0, datum.icons)", "as": "arr"},
     {"flatten": ["arr"]},
